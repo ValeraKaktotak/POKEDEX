@@ -1,11 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom'
-
-import App from '../App'
+import { PokemonPage } from '../pages/PokemonPage'
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />
+    element: <PokemonPage />
   },
   {
     path: '/qqq',
