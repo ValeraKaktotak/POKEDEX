@@ -14,7 +14,14 @@ export const PokemonsPage: FC = () => {
       <div className='grid grid-cols-3 gap-3 p-5 '>
         {data?.pages.map((pokemonPage) => {
           return pokemonPage.results.map((pokemon) => (
-            <div key={pokemon.name}>{pokemon.name}</div>
+            <>
+              <div
+                className='shadow-md rounded-lg p-5 flex justify-center items-center border border-black'
+                key={pokemon.name}
+              >
+                <h2 className='font-semibold capitalize'>{pokemon.name}</h2>
+              </div>
+            </>
           ))
         })}
       </div>
