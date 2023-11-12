@@ -1,6 +1,7 @@
 import { type FC } from 'react'
 
 import { useRequestPokemonsQuery } from '../../utils/api/hooks/pokemons'
+import PokemonPage from '../PokemonPage/PokemonPage'
 
 export const PokemonsPage: FC = () => {
   // pokemons limit for each request
@@ -14,14 +15,10 @@ export const PokemonsPage: FC = () => {
       <div className='grid grid-cols-3 gap-3 p-5 '>
         {data?.pages.map((pokemonPage) => {
           return pokemonPage.results.map((pokemon) => (
-            <>
-              <div
-                className='shadow-md rounded-lg p-5 flex justify-center items-center border border-black'
-                key={pokemon.name}
-              >
-                <h2 className='font-semibold capitalize'>{pokemon.name}</h2>
-              </div>
-            </>
+            <PokemonPage
+              key={pokemon.name}
+              id={Number(pokemon.url.split('/').slice(-2, -1))}
+            />
           ))
         })}
       </div>
@@ -30,7 +27,7 @@ export const PokemonsPage: FC = () => {
           fetchNextPage()
         }}
       >
-        next 10
+        next 5
       </button>
     </>
   )
