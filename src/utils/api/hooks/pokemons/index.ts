@@ -9,7 +9,7 @@ export const useRequestPokemonsQuery = (
   limit: number
 ): UseInfiniteQueryResult<IrequestPokemons> =>
   useInfiniteQuery<IrequestPokemons>(
-    ['pokemon'],
+    ['pokemons'],
     ({ pageParam = 0 }) =>
       requestPokemons({ params: { limit, offset: pageParam } }),
     {
