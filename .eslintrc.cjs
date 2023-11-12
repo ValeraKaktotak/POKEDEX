@@ -21,6 +21,10 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'prettier', 'simple-import-sort'],
   rules: {
+    // Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator
+    '@typescript-eslint/no-floating-promises': 0,
+
+    '@typescript-eslint/strict-boolean-expressions': 0,
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/no-shadow': 0,
     '@typescript-eslint/no-unused-vars': 1,

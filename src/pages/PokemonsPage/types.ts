@@ -1,4 +1,4 @@
-export interface IPokemonPage {
+export interface IPokemonsPage {
   abilities: Ability[]
   base_experience: number
   forms: Form[]
