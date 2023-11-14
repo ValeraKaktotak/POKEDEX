@@ -1,22 +1,15 @@
-import type { UseInfiniteQueryResult } from 'react-query'
-import { useInfiniteQuery } from 'react-query'
+import type { QueriesResults } from 'react-query'
+import { useQueries } from 'react-query'
 
-import { requestPokemons } from '../../requests/pokemon'
-
-import type { IrequestPokemons } from './types'
+import { requestPokemon } from '../../requests/pokemon/id'
+import type { IPokemonPage } from '../pokemon/types'
 
 export const useRequestPokemonsQuery = (
-  limit: number
-): UseInfiniteQueryResult<IrequestPokemons> =>
-  useInfiniteQuery<IrequestPokemons>(
-    ['pokemons'],
-    ({ pageParam = 0 }) =>
-      requestPokemons({ params: { limit, offset: pageParam } }),
-    {
-      refetchOnWindowFocus: false,
-      keepPreviousData: true,
-      getNextPageParam: (lastPage, pages) => {
-        return pages.length * 5
-      }
-    }
+  offset: number
+): QueriesResults<IPokemonPage[]> =>
+  useQueries<IPokemonPage[]>(
+    Array.from({ length: offset }).map((_el, index) => ({
+      queryKey: ['pokemon', index + 1],
+      queryFn: () => requestPokemon({ params: { id: index + 1 } })
+    }))
   )
