@@ -1,15 +1,12 @@
 import type { FC } from 'react'
-import { useRequestPokemonQuery } from '../../utils/api/hooks/pokemon'
+import type { IPokemonPage } from '../../utils/api/hooks/pokemon/types'
 
-interface IPokemonPage {
-  id: number
+interface IPokemonPageProps {
+  pokemonInfo: IPokemonPage
 }
 
-const PokemonPage: FC<IPokemonPage> = ({ id }) => {
-  const { data } = useRequestPokemonQuery(id)
-  console.log(data)
-
-  return <div>{data?.name}</div>
+const PokemonPage: FC<IPokemonPageProps> = ({ pokemonInfo }) => {
+  return <div>{pokemonInfo.name}</div>
 }
 
 export default PokemonPage
