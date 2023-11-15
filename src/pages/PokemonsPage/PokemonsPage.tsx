@@ -2,7 +2,7 @@ import { useState, type FC } from 'react'
 
 import type { IPokemonPage } from '../../utils/api/hooks/pokemon/types'
 import { useRequestPokemonsQuery } from '../../utils/api/hooks/pokemons'
-import PokemonPage from '../PokemonPage/PokemonPage'
+import Pokemon from './Pokemon/Pokemon'
 
 export const PokemonsPage: FC = () => {
   // pokemons limit for each request
@@ -16,7 +16,7 @@ export const PokemonsPage: FC = () => {
     <>
       <div className='grid grid-cols-3 gap-10 p-5 '>
         {results?.map((pokemon, index) => (
-          <PokemonPage key={index} pokemonInfo={pokemon.data as IPokemonPage} />
+          <Pokemon key={index} pokemonInfo={pokemon.data as IPokemonPage} />
         ))}
       </div>
       <button
