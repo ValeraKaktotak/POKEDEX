@@ -13,7 +13,7 @@ export const PokemonsPage: FC = () => {
   }
   return (
     <>
-      <div className='grid grid-cols-3 gap-3 p-5 '>
+      <div className='grid grid-cols-3 gap-10 p-5 '>
         {results?.map((pokemon, index) => (
           <PokemonPage key={index} pokemonInfo={pokemon.data as IPokemonPage} />
         ))}
