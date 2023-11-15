@@ -1,13 +1,11 @@
 import type { FC } from 'react'
-import type { IPokemonPage } from '../../utils/api/hooks/pokemon/types'
+import type { IPokemonPage } from '../../../utils/api/hooks/pokemon/types'
 
-interface IPokemonPageProps {
+interface IPokemonProps {
   pokemonInfo: IPokemonPage
 }
 
-const PokemonPage: FC<IPokemonPageProps> = ({ pokemonInfo }) => {
-  console.log(pokemonInfo)
-
+const Pokemon: FC<IPokemonProps> = ({ pokemonInfo }) => {
   return (
     <div className=' flex items-center flex-col justify-center shadow p-3'>
       <div className='w-24 h-24'>
@@ -26,4 +24,4 @@ const PokemonPage: FC<IPokemonPageProps> = ({ pokemonInfo }) => {
   )
 }
 
-export default PokemonPage
+export default Pokemon
