@@ -1,16 +1,22 @@
-.page_container {
+.page {
   @apply flex justify-center items-center;
 }
-.content_container {
+.content {
   @apply flex justify-center;
 }
-.list_container {
+.list {
 }
 .pokemon_item {
   @apply flex items-center bg-[#bdbbbb] justify-start px-3 mb-3 overflow-hidden rounded-l-full transition-transform;
   @apply text-sm text-white font-bold capitalize cursor-pointer hover:scale-110;
   @apply hover:bg-black;
 }
+.active_pokemon_item {
+  @apply bg-red-600 hover:bg-red-600;
+}
 .pokemon_item_image {
   @apply w-16 rounded-full scale-150 mr-4;
+}
+.card {
+  @apply flex flex-col;
 }
