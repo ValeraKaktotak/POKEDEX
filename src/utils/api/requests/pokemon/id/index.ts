@@ -1,6 +1,7 @@
 import type { AxiosRequestConfig } from 'axios'
 
 import { pokemonAPI } from '../../../instance'
+import type { IPokemon } from './types'
 
 interface IParams {
   id: number
@@ -11,11 +12,12 @@ interface RequestPokemonParam {
   params: IParams
 }
 
-export const requestPokemon = ({
+export const requestPokemon = async ({
   config,
   params
-}: RequestPokemonParam): any => {
-  return pokemonAPI
-    .get(`pokemon/${params.id}`, { ...config })
-    .then((res) => res.data)
+}: RequestPokemonParam): Promise<IPokemon> => {
+  const response = await pokemonAPI.get<IPokemon>(`pokemon/${params.id}`, {
+    ...config
+  })
+  return response.data
 }

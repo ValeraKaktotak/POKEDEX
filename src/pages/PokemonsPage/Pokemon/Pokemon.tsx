@@ -3,10 +3,14 @@ import type { FC } from 'react'
 import type { IPokemonPage } from '../../../utils/api/hooks/pokemon/types'
 
 interface IPokemonProps {
-  pokemonInfo: IPokemonPage
+  pokemonInfo?: IPokemonPage
 }
 
 const Pokemon: FC<IPokemonProps> = ({ pokemonInfo }) => {
+  if (!pokemonInfo) {
+    // Обработка случая, когда данные еще не загружены
+    return <div>Loading...</div>
+  }
   return (
     <div className=' flex items-center flex-col justify-center shadow p-3'>
       <div className='w-24 h-24'>
