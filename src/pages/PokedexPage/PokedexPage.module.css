@@ -7,16 +7,31 @@
 .list {
 }
 .pokemon_item {
-  @apply flex items-center bg-[#bdbbbb] justify-start px-3 mb-3 overflow-hidden rounded-l-full transition-transform;
+  @apply flex items-center justify-start px-3 mb-3;
+  @apply overflow-hidden rounded-l-full transition-transform shadow-xl;
   @apply text-sm text-white font-bold capitalize cursor-pointer hover:scale-110;
-  @apply hover:bg-black;
+  @apply bg-[#bdbbbb] hover:bg-black;
 }
-.active_pokemon_item {
+.pokemon_item_active {
   @apply bg-red-600 hover:bg-red-600;
 }
 .pokemon_item_image {
   @apply w-16 rounded-full scale-150 mr-4;
 }
-.card {
-  @apply flex flex-col;
+.pokemon_card {
+  @apply flex flex-col mr-4 p-10;
+  @apply shadow-xl rounded-xl;
+  @apply bg-[#ddd8d8];
+}
+.pokemon_card_title {
+  @apply flex justify-between items-baseline;
+}
+.pokemon_card_title_name {
+  @apply text-2xl capitalize font-bold;
+}
+.pokemon_card_title_id {
+  @apply text-lg;
+}
+.pokemon_card_title_image img {
+  @apply w-80;
 }
