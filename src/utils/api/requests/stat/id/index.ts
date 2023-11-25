@@ -7,7 +7,7 @@ interface IParams {
   id: number
 }
 
-interface RequestPokemonsParam {
+interface RequestPokemonStatParam {
   config?: AxiosRequestConfig
   params: IParams
 }
@@ -15,7 +15,9 @@ interface RequestPokemonsParam {
 export const requestPokemonStat = async ({
   config,
   params
-}: RequestPokemonsParam): Promise<IStat> => {
-  const response = await pokemonAPI.get<IStat>('stat', { ...config, params })
+}: RequestPokemonStatParam): Promise<IStat> => {
+  const response = await pokemonAPI.get<IStat>(`stat/${params.id}`, {
+    ...config
+  })
   return response.data
 }

@@ -39,7 +39,13 @@ const PokedexPage: FC = () => {
               alt='pokemon_image'
             />
           </div>
-          <div>stats</div>
+          <div>
+            {selectedPokemon?.stats.map((elem) => (
+              <div key={elem.stat.name}>
+                {elem.stat.name}:{elem.base_stat}
+              </div>
+            ))}
+          </div>
         </div>
         <ul className={styles.list}>
           {pokemons.map((elem) => {
