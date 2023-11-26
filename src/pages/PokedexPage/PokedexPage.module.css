@@ -33,5 +33,22 @@
   @apply text-lg;
 }
 .pokemon_card_title_image img {
-  @apply w-80;
+  @apply w-80 h-80;
+}
+.pokemon_card_types {
+  @apply flex mt-1 gap-3;
+}
+.pokemon_card_type {
+  @apply px-3 py-1 rounded-xl;
+  @apply bg-[#d1cbcb] text-white;
+}
+.pokemon_card_info {
+  @apply flex justify-between gap-3;
+}
+.pokemon_card_info_title {
+  @apply font-bold text-2xl text-left;
+}
+.pokemon_card_info_stat {
+  @apply capitalize text-left;
+  @apply border-b-2 border-[#1a1a1a] p-1;
 }
