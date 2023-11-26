@@ -1,12 +1,14 @@
 import { useState, type FC } from 'react'
 
 import classNames from 'classnames'
+import { useRequestPokemonEvolution } from '../../utils/api/hooks/pokemon-form/id'
 import type { IPokemonPage } from '../../utils/api/hooks/pokemon/types'
 import { useRequestPokemonsQuery } from '../../utils/api/hooks/pokemons'
 import styles from './PokedexPage.module.css'
 
 const PokedexPage: FC = () => {
   const results = useRequestPokemonsQuery(6)
+  const { data } = useRequestPokemonEvolution(1)
   const isLoading = results.some((elem) => elem.isLoading)
   const pokemons = results.map((elem) => elem.data as IPokemonPage)
   const [selectedPokemonId, setSelectedPokemonId] = useState<number>(
@@ -16,6 +18,7 @@ const PokedexPage: FC = () => {
   if (isLoading) {
     return <div>LOADING</div>
   }
+  console.log(data)
 
   const selectedPokemon = pokemons.find(
     (pokemon) => selectedPokemonId === pokemon.id
