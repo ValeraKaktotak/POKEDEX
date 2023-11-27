@@ -1,13 +1,15 @@
-import { useState, type FC } from 'react'
+import { type FC,useState } from 'react'
 
 import type { IPokemonPage } from '../../utils/api/hooks/pokemon/types'
 import { useRequestPokemonsQuery } from '../../utils/api/hooks/pokemons'
+
 import Pokemon from './Pokemon/Pokemon'
 
 export const PokemonsPage: FC = () => {
   // pokemons limit for each request
   const [offset, setOffset] = useState<number>(10)
   const results = useRequestPokemonsQuery(offset)
+  console.log(results)
 
   if (results.some((elem) => elem.isLoading)) {
     return <h1>LOADING</h1>

@@ -10,6 +10,6 @@ export const useRequestPokemonsQuery = (
   useQueries<IPokemonPage[]>(
     Array.from({ length: offset }).map((_el, index) => ({
       queryKey: ['pokemon', index + 1],
-      queryFn: () => requestPokemon({ params: { id: index + 1 } })
+      queryFn: async () => await requestPokemon({ params: { id: index + 1 } })
     }))
   )

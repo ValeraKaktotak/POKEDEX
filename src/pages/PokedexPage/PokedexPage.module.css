@@ -1,0 +1,54 @@
+.page {
+  @apply flex justify-center items-center;
+}
+.content {
+  @apply flex justify-center;
+}
+.list {
+}
+.pokemon_item {
+  @apply flex items-center justify-start px-3 mb-3;
+  @apply overflow-hidden rounded-l-full transition-transform shadow-xl;
+  @apply text-sm text-white font-bold capitalize cursor-pointer hover:scale-110;
+  @apply bg-[#bdbbbb] hover:bg-black;
+}
+.pokemon_item_active {
+  @apply bg-red-600 hover:bg-red-600;
+}
+.pokemon_item_image {
+  @apply w-16 rounded-full scale-150 mr-4;
+}
+.pokemon_card {
+  @apply flex flex-col mr-4 p-10;
+  @apply shadow-xl rounded-xl;
+  @apply bg-[#ddd8d8];
+}
+.pokemon_card_title {
+  @apply flex justify-between items-baseline;
+}
+.pokemon_card_title_name {
+  @apply text-2xl capitalize font-bold;
+}
+.pokemon_card_title_id {
+  @apply text-lg;
+}
+.pokemon_card_title_image img {
+  @apply w-80 h-80;
+}
+.pokemon_card_types {
+  @apply flex mt-1 gap-3;
+}
+.pokemon_card_type {
+  @apply px-3 py-1 rounded-xl;
+  @apply bg-[#d1cbcb] text-white;
+}
+.pokemon_card_info {
+  @apply flex justify-between gap-3;
+}
+.pokemon_card_info_title {
+  @apply font-bold text-2xl text-left;
+}
+.pokemon_card_info_stat {
+  @apply capitalize text-left;
+  @apply border-b-2 border-[#1a1a1a] p-1;
+}
