@@ -1,1 +1,1 @@
-export { PokemonsPage } from './PokemonsPage.tsx'
+export { PokemonsPage } from './PokemonsPage'

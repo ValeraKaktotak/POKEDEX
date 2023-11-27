@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { type FC,useState } from 'react'
+import { useState, type FC } from 'react'
 
 import { useRequestPokemonEvolution } from '../../utils/api/hooks/evolution-chain/id'
 import type { IPokemonPage } from '../../utils/api/hooks/pokemon/types'
@@ -7,7 +7,7 @@ import { useRequestPokemonsQuery } from '../../utils/api/hooks/pokemons'
 
 import styles from './PokedexPage.module.css'
 
-const PokedexPage: FC = () => {
+export const PokedexPage: FC = () => {
   const results = useRequestPokemonsQuery(6)
   const isLoading = results.some((elem) => elem.isLoading)
   const pokemons = results.map((elem) => elem.data as IPokemonPage)
