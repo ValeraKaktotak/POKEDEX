@@ -10,7 +10,7 @@ export const useRequestPokemonQuery = (
 ): UseQueryResult<IPokemonPage> =>
   useQuery<IPokemonPage>(
     ['pokemon', id],
-    () => requestPokemon({ params: { id } }),
+    async () => await requestPokemon({ params: { id } }),
     {
       refetchOnWindowFocus: false,
       keepPreviousData: true

@@ -1,9 +1,10 @@
-import { useState, type FC } from 'react'
-
 import classNames from 'classnames'
+import { type FC,useState } from 'react'
+
 import { useRequestPokemonEvolution } from '../../utils/api/hooks/evolution-chain/id'
 import type { IPokemonPage } from '../../utils/api/hooks/pokemon/types'
 import { useRequestPokemonsQuery } from '../../utils/api/hooks/pokemons'
+
 import styles from './PokedexPage.module.css'
 
 const PokedexPage: FC = () => {
