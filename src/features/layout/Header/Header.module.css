@@ -1,0 +1,10 @@
+.header_container {
+  @apply flex items-center justify-between mb-5 pb-5;
+  @apply border-b-2 border-[#bdbbbb];
+}
+.logo {
+  @apply w-[100px];
+}
+.header_menu {
+  @apply flex gap-5;
+}
