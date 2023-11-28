@@ -1,9 +1,10 @@
 import type { FC } from 'react'
 
-import type { IPokemonPage } from '../../../utils/api/hooks/pokemon/types'
+import { Link } from 'react-router-dom'
+import type { IPokemon } from '../../../utils/api/requests/pokemon/id/types'
 
 interface IPokemonProps {
-  pokemonInfo?: IPokemonPage
+  pokemonInfo?: IPokemon
 }
 
 const Pokemon: FC<IPokemonProps> = ({ pokemonInfo }) => {
@@ -12,7 +13,10 @@ const Pokemon: FC<IPokemonProps> = ({ pokemonInfo }) => {
     return <div>Loading...</div>
   }
   return (
-    <div className=' flex items-center flex-col justify-center shadow p-3'>
+    <Link
+      to={`/pokemon/${pokemonInfo.id}`}
+      className=' flex items-center flex-col justify-center shadow p-3'
+    >
       <div className='w-24 h-24'>
         <img
           className='w-full'
@@ -25,7 +29,7 @@ const Pokemon: FC<IPokemonProps> = ({ pokemonInfo }) => {
           {pokemonInfo.name}
         </h2>
       </div>
-    </div>
+    </Link>
   )
 }
 

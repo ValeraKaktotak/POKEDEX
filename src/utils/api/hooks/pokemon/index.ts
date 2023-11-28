@@ -3,12 +3,10 @@ import { useQuery } from 'react-query'
 
 import { requestPokemon } from '../../requests/pokemon/id'
 
-import type { IPokemonPage } from './types'
+import type { IPokemon } from '../../requests/pokemon/id/types'
 
-export const useRequestPokemonQuery = (
-  id: number
-): UseQueryResult<IPokemonPage> =>
-  useQuery<IPokemonPage>(
+export const useRequestPokemonQuery = (id: number): UseQueryResult<IPokemon> =>
+  useQuery<IPokemon>(
     ['pokemon', id],
     async () => await requestPokemon({ params: { id } }),
     {
