@@ -1,4 +1,4 @@
-import { useState, type FC } from 'react'
+import { type FC,useState } from 'react'
 
 import type { IPokemonPage } from '../../utils/api/hooks/pokemon/types'
 import { useRequestPokemonsQuery } from '../../utils/api/hooks/pokemons'

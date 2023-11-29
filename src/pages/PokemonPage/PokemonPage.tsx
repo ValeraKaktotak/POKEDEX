@@ -1,6 +1,7 @@
 import { type FC } from 'react'
 import { useQueryClient } from 'react-query'
 import { useParams } from 'react-router-dom'
+
 import { useRequestPokemonQuery } from '../../utils/api/hooks/pokemon'
 
 export const PokemonPage: FC = () => {

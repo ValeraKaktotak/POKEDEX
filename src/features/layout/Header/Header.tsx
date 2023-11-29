@@ -1,6 +1,8 @@
 import type { FC } from 'react'
 import { Link } from 'react-router-dom'
+
 import logo from '../../../assets/pokemon_logo.png'
+
 import styles from './Header.module.css'
 
 export const Header: FC = () => {

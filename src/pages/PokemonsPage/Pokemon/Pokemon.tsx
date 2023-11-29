@@ -1,6 +1,6 @@
 import type { FC } from 'react'
-
 import { Link } from 'react-router-dom'
+
 import type { IPokemon } from '../../../utils/api/requests/pokemon/id/types'
 
 interface IPokemonProps {
