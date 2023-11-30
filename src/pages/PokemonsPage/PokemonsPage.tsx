@@ -1,23 +1,26 @@
-import { type FC,useState } from 'react'
-
-import type { IPokemonPage } from '../../utils/api/hooks/pokemon/types'
-import { useRequestPokemonsQuery } from '../../utils/api/hooks/pokemons'
-
+import { type FC } from 'react'
+import { useRequestPokemonsInfiniteQuery } from '../../utils/api/hooks/pokemons'
 import Pokemon from './Pokemon/Pokemon'
 
-export const PokemonsPage: FC = () => {
-  // pokemons limit for each request
-  const [offset, setOffset] = useState<number>(10)
-  const results = useRequestPokemonsQuery(offset)
+interface Pokemons {
+  name: string
+  url: string
+}
 
-  if (results.some((elem) => elem.isLoading)) {
+export const PokemonsPage: FC = () => {
+  const { data, fetchNextPage } = useRequestPokemonsInfiniteQuery()
+
+  if (!data) {
     return <h1>LOADING</h1>
   }
+
   return (
     <>
+      {/* вариант с useQueries
+      =========================
       <div className='grid grid-cols-3 gap-10 p-5 '>
         {results?.map((pokemon, index) => (
-          <Pokemon key={index} pokemonInfo={pokemon.data as IPokemonPage} />
+          <Pokemon key={index} pokemonInfo={pokemon.data as IPokemon} />
         ))}
       </div>
       <button
@@ -26,7 +29,21 @@ export const PokemonsPage: FC = () => {
         }}
       >
         ADD +10
-      </button>
+      </button> */}
+
+      <div className='grid grid-cols-3 gap-10 p-5 '>
+        {data.pages.map((elem) =>
+          elem.results.map((pokemon, index) => (
+            <Pokemon
+              key={index}
+              pokemonInfo={Number(
+                pokemon.url.split('/').splice(-2, 1).join('')
+              )}
+            />
+          ))
+        )}
+      </div>
+      <button>ADD +10</button>
     </>
   )
 }
