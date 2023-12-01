@@ -8,7 +8,10 @@ interface Pokemons {
 }
 
 export const PokemonsPage: FC = () => {
-  const { data, fetchNextPage } = useRequestPokemonsInfiniteQuery()
+  const { data, fetchNextPage, fetchPreviousPage, isLoading } =
+    useRequestPokemonsInfiniteQuery()
+
+  console.log('@@@IsLOADING', isLoading)
 
   if (!data) {
     return <h1>LOADING</h1>
@@ -16,34 +19,33 @@ export const PokemonsPage: FC = () => {
 
   return (
     <>
-      {/* вариант с useQueries
-      =========================
-      <div className='grid grid-cols-3 gap-10 p-5 '>
-        {results?.map((pokemon, index) => (
-          <Pokemon key={index} pokemonInfo={pokemon.data as IPokemon} />
-        ))}
-      </div>
-      <button
-        onClick={() => {
-          setOffset((prev) => prev + 10)
-        }}
-      >
-        ADD +10
-      </button> */}
-
       <div className='grid grid-cols-3 gap-10 p-5 '>
         {data.pages.map((elem) =>
           elem.results.map((pokemon, index) => (
             <Pokemon
               key={index}
-              pokemonInfo={Number(
-                pokemon.url.split('/').splice(-2, 1).join('')
-              )}
+              pokemonInfo={{
+                id: Number(pokemon.url.split('/').splice(-2, 1).join('')),
+                name: pokemon.name
+              }}
             />
           ))
         )}
       </div>
-      <button>ADD +10</button>
+      <button
+        onClick={() => {
+          fetchNextPage()
+        }}
+      >
+        ADD +10
+      </button>
+      <button
+        onClick={() => {
+          fetchPreviousPage()
+        }}
+      >
+        BACK -10
+      </button>
     </>
   )
 }

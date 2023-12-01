@@ -1,13 +1,14 @@
 import type { FC } from 'react'
 
-import type { IPokemon } from '../../../utils/api/requests/pokemon/id/types'
-
 interface IPokemonProps {
-  pokemonInfo?: IPokemon
+  pokemonInfo: {
+    name: string
+    id: number
+  }
 }
 
-const Pokemon: FC<any> = ({ pokemonInfo }) => {
-  console.log(typeof pokemonInfo)
+const Pokemon: FC<IPokemonProps> = ({ pokemonInfo }) => {
+  console.log(pokemonInfo)
 
   if (!pokemonInfo) {
     // Обработка случая, когда данные еще не загружены
@@ -31,7 +32,7 @@ const Pokemon: FC<any> = ({ pokemonInfo }) => {
     //     </h2>
     //   </div>
     // </Link>
-    <div>{pokemonInfo}</div>
+    <div>{pokemonInfo.name}</div>
   )
 }
 
