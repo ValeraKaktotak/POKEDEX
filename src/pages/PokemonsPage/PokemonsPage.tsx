@@ -1,11 +1,7 @@
 import { type FC } from 'react'
 import { useRequestPokemonsInfiniteQuery } from '../../utils/api/hooks/pokemons'
 import Pokemon from './Pokemon/Pokemon'
-
-interface Pokemons {
-  name: string
-  url: string
-}
+import styles from './PokemonsPage.module.css'
 
 export const PokemonsPage: FC = () => {
   const { data, fetchNextPage, fetchPreviousPage, isLoading } =
@@ -19,7 +15,7 @@ export const PokemonsPage: FC = () => {
 
   return (
     <>
-      <div className='grid grid-cols-3 gap-10 p-5 '>
+      <div className={styles.pokemons_container}>
         {data.pages.map((elem) =>
           elem.results.map((pokemon, index) => (
             <Pokemon
