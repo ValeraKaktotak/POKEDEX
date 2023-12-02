@@ -1,13 +1,19 @@
-import { type FC } from 'react'
+import { useEffect, type FC } from 'react'
+import { useInView } from 'react-intersection-observer'
 import { useRequestPokemonsInfiniteQuery } from '../../utils/api/hooks/pokemons'
 import Pokemon from './Pokemon/Pokemon'
 import styles from './PokemonsPage.module.css'
 
 export const PokemonsPage: FC = () => {
+  const { ref, inView } = useInView()
   const { data, fetchNextPage, fetchPreviousPage, isLoading } =
     useRequestPokemonsInfiniteQuery()
 
-  console.log('@@@IsLOADING', isLoading)
+  useEffect(() => {
+    if (inView) {
+      fetchNextPage()
+    }
+  }, [inView])
 
   if (!data) {
     return <h1>LOADING</h1>
@@ -28,20 +34,7 @@ export const PokemonsPage: FC = () => {
           ))
         )}
       </div>
-      <button
-        onClick={() => {
-          fetchNextPage()
-        }}
-      >
-        ADD +10
-      </button>
-      <button
-        onClick={() => {
-          fetchPreviousPage()
-        }}
-      >
-        BACK -10
-      </button>
+      <div ref={ref} />
     </>
   )
 }
