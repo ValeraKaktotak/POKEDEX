@@ -26,9 +26,6 @@ export const useRequestPokemonsInfiniteQuery =
         refetchOnWindowFocus: false,
         getNextPageParam: (lastPage, allPages) => {
           return allPages.length * 10
-        },
-        getPreviousPageParam: (firstPage, allPages) => {
-          return allPages.length * 10 - 10
         }
       }
     )

@@ -6,8 +6,7 @@ import styles from './PokemonsPage.module.css'
 
 export const PokemonsPage: FC = () => {
   const { ref, inView } = useInView()
-  const { data, fetchNextPage, fetchPreviousPage, isLoading } =
-    useRequestPokemonsInfiniteQuery()
+  const { data, fetchNextPage } = useRequestPokemonsInfiniteQuery()
 
   useEffect(() => {
     if (inView) {
