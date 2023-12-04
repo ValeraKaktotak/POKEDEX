@@ -17,7 +17,5 @@ export const useDebounce: FC<useDebounceProps> = ({ value, delay = 500 }) => {
     }
   }, [value])
 
-  console.log(debouncedValue)
-
   return debouncedValue
 }
