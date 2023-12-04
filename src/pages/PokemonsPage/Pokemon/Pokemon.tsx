@@ -1,5 +1,7 @@
 import { useState, type FC } from 'react'
+import { PokemonInfo } from '..'
 import { getPokemonId } from '../../../utils/helpers/getPokemonId'
+import { useDebounce } from '../../../utils/helpers/useDebounce'
 import styles from './Pokemon.module.css'
 
 interface IPokemonProps {
@@ -9,12 +11,11 @@ interface IPokemonProps {
   }
 }
 
-const Pokemon: FC<IPokemonProps> = ({ pokemonInfo }) => {
-  const [pokemonId, setPokemonId] = useState<string | number | null>(null)
-  console.log(pokemonId)
+export const Pokemon: FC<IPokemonProps> = ({ pokemonInfo }) => {
+  const [pokemonId, setPokemonId] = useState<number | null>(null)
+  const debouncedValue = useDebounce({ value: pokemonId })
 
   if (!pokemonInfo) {
-    // Обработка случая, когда данные еще не загружены
     return <div>Loading...</div>
   }
   return (
@@ -31,11 +32,11 @@ const Pokemon: FC<IPokemonProps> = ({ pokemonInfo }) => {
       <div className={styles.pokemon_number}>
         {getPokemonId(pokemonInfo.id)}
       </div>
-      {pokemonInfo.id === pokemonId && (
-        <div className={styles.pokemon_info}>123</div>
+      {pokemonInfo.id === debouncedValue && (
+        <div className={styles.pokemon_info}>
+          <PokemonInfo id={pokemonInfo.id} />
+        </div>
       )}
     </div>
   )
 }
-
-export default Pokemon
