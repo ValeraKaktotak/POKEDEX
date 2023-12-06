@@ -8,9 +8,10 @@ import styles from './PokemonsPage.module.css'
 export const PokemonsPage: FC = () => {
   const { ref, inView } = useInView()
   const { data, fetchNextPage } = useRequestPokemonsInfiniteQuery()
+  console.log('data', data)
 
   useEffect(() => {
-    if (inView) {
+    if (inView && data && data.pages.length * 100 < data?.pages[0].count) {
       fetchNextPage()
     }
   }, [inView])

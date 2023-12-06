@@ -21,11 +21,11 @@ export const useRequestPokemonsInfiniteQuery =
     useInfiniteQuery<IPokemons>(
       'pokemonsPaginate',
       async ({ pageParam = 0 }) =>
-        await requestPokemons({ params: { offset: pageParam, limit: 10 } }),
+        await requestPokemons({ params: { offset: pageParam, limit: 100 } }),
       {
         refetchOnWindowFocus: false,
         getNextPageParam: (lastPage, allPages) => {
-          return allPages.length * 10
+          return allPages.length * 100
         }
       }
     )
