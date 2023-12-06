@@ -13,43 +13,35 @@ export const PokemonInfo: FC<IPokemonInfo> = ({ id }) => {
   if (isLoading || !pokemon) {
     return null
   }
-  console.log(pokemon)
 
   return (
-    <div className={styles.pokemon_card}>
-      <div className={styles.pokemon_card_title}>
-        <div className={styles.pokemon_card_title_name}>{pokemon.name}</div>
-        <div className={styles.pokemon_card_title_id}>{pokemonNumber}</div>
+    <div className={styles.pokemon_info_container}>
+      <div className={styles.pokemon_info_title_image}>
+        <img src={pokemon.sprites.front_default ?? ''} alt='pokemon_image' />
       </div>
-      <div className={styles.pokemon_card_types}>
+      <div className={styles.pokemon_info_types}>
         {pokemon.types.map((elem) => (
-          <div className={styles.pokemon_card_type} key={elem.type.name}>
+          <div className={styles.pokemon_info_type} key={elem.type.name}>
             {elem.type.name}
           </div>
         ))}
       </div>
-      <div className={styles.pokemon_card_title_image}>
-        <img src={pokemon.sprites.front_default ?? ''} alt='pokemon_image' />
-      </div>
-      <div className={styles.pokemon_card_info}>
+      <div className={styles.pokemon_info_stats}>
         <div>
-          <div className={styles.pokemon_card_info_title}>Stats</div>
+          <div className={styles.pokemon_info_title}>Stats</div>
           <ul>
             {pokemon.stats.map((elem) => (
-              <li
-                className={styles.pokemon_card_info_stat}
-                key={elem.stat.name}
-              >
+              <li className={styles.pokemon_info_stat} key={elem.stat.name}>
                 {elem.stat.name}: {elem.base_stat}
               </li>
             ))}
           </ul>
         </div>
         <div>
-          <div className={styles.pokemon_card_info_title}>Abilities</div>
+          <div className={styles.pokemon_info_title}>Abilities</div>
           <ul>
             {pokemon.abilities.map((elem, index) => (
-              <li className={styles.pokemon_card_info_stat} key={index}>
+              <li className={styles.pokemon_info_stat} key={index}>
                 {elem.ability.name}
               </li>
             ))}

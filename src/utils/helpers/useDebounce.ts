@@ -9,6 +9,8 @@ export const useDebounce: FC<useDebounceProps> = ({ value, delay = 500 }) => {
   const [debouncedValue, setDebouncedValue] = useState<number | null>(value)
 
   useEffect(() => {
+    if (!value) setDebouncedValue(value)
+
     const handler = setTimeout(() => {
       setDebouncedValue(value)
     }, delay)

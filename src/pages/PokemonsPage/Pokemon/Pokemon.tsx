@@ -32,11 +32,7 @@ export const Pokemon: FC<IPokemonProps> = ({ pokemonInfo }) => {
       <div className={styles.pokemon_number}>
         {getPokemonId(pokemonInfo.id)}
       </div>
-      {pokemonInfo.id === debouncedValue && (
-        <div className={styles.pokemon_info}>
-          <PokemonInfo id={pokemonInfo.id} />
-        </div>
-      )}
+      {pokemonInfo.id === debouncedValue && <PokemonInfo id={pokemonInfo.id} />}
     </div>
   )
 }
