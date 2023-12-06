@@ -1,8 +1,11 @@
-import { useEffect, type FC } from 'react'
+import { type FC,useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { Link } from 'react-router-dom'
-import { Pokemon } from '.'
+
 import { useRequestPokemonsInfiniteQuery } from '../../utils/api/hooks/pokemons'
+
+import { Pokemon } from '.'
+
 import styles from './PokemonsPage.module.css'
 
 export const PokemonsPage: FC = () => {

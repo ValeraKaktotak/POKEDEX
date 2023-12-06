@@ -1,6 +1,7 @@
 import type { FC } from 'react'
+
 import { useRequestPokemonQuery } from '../../../utils/api/hooks/pokemon'
-import { getPokemonId } from '../../../utils/helpers/getPokemonId'
+
 import styles from './PokemonInfo.module.css'
 
 interface IPokemonInfo {
@@ -9,7 +10,6 @@ interface IPokemonInfo {
 
 export const PokemonInfo: FC<IPokemonInfo> = ({ id }) => {
   const { data: pokemon, isLoading } = useRequestPokemonQuery(id)
-  const pokemonNumber = getPokemonId(id)
   if (isLoading || !pokemon) {
     return null
   }

@@ -27,7 +27,7 @@ export const useRequestPokemonsInfiniteQuery =
         getNextPageParam: (lastPage, allPages) => {
           const pokemonsCount = allPages.length * 10
           const hasNextPage = pokemonsCount < lastPage.count
-          return pokemonsCount
+          if (hasNextPage) return pokemonsCount
         }
       }
     )
