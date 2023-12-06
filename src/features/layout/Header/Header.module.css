@@ -1,6 +1,7 @@
 .header_container {
-  @apply flex items-center justify-between mb-5 pb-5;
-  @apply border-b-2 border-[#bdbbbb];
+  @apply flex items-center justify-between mb-5 p-5;
+  @apply border-b-2 border-[#bdbbbb] bg-[#d1cbcb] shadow-lg;
+  @apply fixed w-full top-0 left-0 z-10;
 }
 .logo {
   @apply w-[100px];
