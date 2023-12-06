@@ -7,7 +7,9 @@ export const Layout: FC = () => {
   return (
     <div>
       <Header />
-      <Outlet />
+      <div className='pt-[90px]'>
+        <Outlet />
+      </div>
     </div>
   )
 }
