@@ -1,32 +1,49 @@
-import { useState, type FC } from 'react'
+import { type FC,useEffect } from 'react'
+import { useInView } from 'react-intersection-observer'
+import { Link } from 'react-router-dom'
 
-import type { IPokemonPage } from '../../utils/api/hooks/pokemon/types'
-import { useRequestPokemonsQuery } from '../../utils/api/hooks/pokemons'
+import { useRequestPokemonsInfiniteQuery } from '../../utils/api/hooks/pokemons'
 
-import Pokemon from './Pokemon/Pokemon'
+import { Pokemon } from '.'
+
+import styles from './PokemonsPage.module.css'
 
 export const PokemonsPage: FC = () => {
-  // pokemons limit for each request
-  const [offset, setOffset] = useState<number>(10)
-  const results = useRequestPokemonsQuery(offset)
+  const { ref, inView } = useInView()
+  const { data, fetchNextPage, hasNextPage } = useRequestPokemonsInfiniteQuery()
 
-  if (results.some((elem) => elem.isLoading)) {
+  useEffect(() => {
+    if (inView && hasNextPage) {
+      fetchNextPage()
+    }
+  }, [inView])
+
+  if (!data) {
     return <h1>LOADING</h1>
   }
+
   return (
     <>
-      <div className='grid grid-cols-3 gap-10 p-5 '>
-        {results?.map((pokemon, index) => (
-          <Pokemon key={index} pokemonInfo={pokemon.data as IPokemonPage} />
-        ))}
+      <div className={styles.pokemons_container}>
+        {data.pages.map((elem) =>
+          elem.results.map((pokemon, index) => (
+            <Link
+              to={`/pokemon/${Number(
+                pokemon.url.split('/').splice(-2, 1).join('')
+              )}`}
+              key={index}
+            >
+              <Pokemon
+                pokemonInfo={{
+                  id: Number(pokemon.url.split('/').splice(-2, 1).join('')),
+                  name: pokemon.name
+                }}
+              />
+            </Link>
+          ))
+        )}
       </div>
-      <button
-        onClick={() => {
-          setOffset((prev) => prev + 10)
-        }}
-      >
-        ADD +10
-      </button>
+      <div ref={ref} />
     </>
   )
 }

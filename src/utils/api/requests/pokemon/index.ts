@@ -2,6 +2,8 @@ import type { AxiosRequestConfig } from 'axios'
 
 import { pokemonAPI } from '../../instance'
 
+import type { IPokemons } from './types'
+
 interface IParams {
   limit: number
   offset: number
@@ -12,11 +14,10 @@ interface RequestPokemonsParam {
   params: IParams
 }
 
-export const requestPokemons = ({
+export const requestPokemons = async ({
   config,
   params
-}: RequestPokemonsParam): any => {
-  return pokemonAPI
-    .get('pokemon', { ...config, params })
-    .then((res) => res.data)
+}: RequestPokemonsParam): Promise<IPokemons> => {
+  const response = await pokemonAPI.get('pokemon', { ...config, params })
+  return response.data
 }

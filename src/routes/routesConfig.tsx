@@ -1,9 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 
 import { Layout } from '../features/layout'
-
 import { PokedexPage } from '../pages/PokedexPage'
-
 import { PokemonPage } from '../pages/PokemonPage'
 import { PokemonsPage } from '../pages/PokemonsPage'
 
@@ -13,7 +11,7 @@ export const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        path: '/',
+        path: '',
         element: <PokemonsPage />
       },
       {
@@ -23,6 +21,10 @@ export const router = createBrowserRouter([
       {
         path: '/pokemon/:pokemonId',
         element: <PokemonPage />
+      },
+      {
+        path: '*',
+        element: <div>Not Found</div>
       }
     ]
   }

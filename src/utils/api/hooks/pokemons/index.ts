@@ -1,8 +1,10 @@
-import type { QueriesResults } from 'react-query'
-import { useQueries } from 'react-query'
+import type { QueriesResults, UseInfiniteQueryResult } from 'react-query'
+import { useInfiniteQuery, useQueries } from 'react-query'
 
+import { requestPokemons } from '../../requests/pokemon'
 import { requestPokemon } from '../../requests/pokemon/id'
 import type { IPokemon } from '../../requests/pokemon/id/types'
+import type { IPokemons } from '../../requests/pokemon/types'
 
 export const useRequestPokemonsQuery = (
   offset: number
@@ -13,3 +15,19 @@ export const useRequestPokemonsQuery = (
       queryFn: async () => await requestPokemon({ params: { id: index + 1 } })
     }))
   )
+
+export const useRequestPokemonsInfiniteQuery =
+  (): UseInfiniteQueryResult<IPokemons> =>
+    useInfiniteQuery<IPokemons>(
+      'pokemonsPaginate',
+      async ({ pageParam = 0 }) =>
+        await requestPokemons({ params: { offset: pageParam, limit: 10 } }),
+      {
+        refetchOnWindowFocus: false,
+        getNextPageParam: (lastPage, allPages) => {
+          const pokemonsCount = allPages.length * 10
+          const hasNextPage = pokemonsCount < lastPage.count
+          if (hasNextPage) return pokemonsCount
+        }
+      }
+    )

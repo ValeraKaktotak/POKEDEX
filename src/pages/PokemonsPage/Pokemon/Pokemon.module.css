@@ -1,0 +1,11 @@
+.pokemon_container {
+  @apply flex text-left gap-1 justify-between;
+  @apply shadow-lg p-8 rounded-xl cursor-pointer;
+  @apply relative;
+}
+.pokemon_number {
+  @apply font-light text-[#1a1a1a];
+}
+.pokemon_name {
+  @apply font-bold text-2xl text-[#1a1a1a] capitalize;
+}
