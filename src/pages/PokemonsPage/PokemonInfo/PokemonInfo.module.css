@@ -13,13 +13,6 @@
 .pokemon_info_title_id {
   @apply text-lg font-normal;
 }
-.pokemon_info_types {
-  @apply flex my-1 gap-3;
-}
-.pokemon_info_type {
-  @apply px-3 py-1 rounded-xl;
-  @apply bg-[#d1cbcb] text-white;
-}
 .pokemon_info_title_image img {
   @apply w-full max-w-[188px] h-[188px];
 }

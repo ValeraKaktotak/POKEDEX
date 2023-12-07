@@ -2,9 +2,11 @@ import type { FC } from 'react'
 
 import { useRequestPokemonQuery } from '../../../utils/api/hooks/pokemon'
 
+import { Button } from '../../../common/buttons/Button/Button'
 import { getPokemonId } from '../../../utils/helpers/getPokemonId'
 import styles from './PokemonInfo.module.css'
 import { PokemonStats } from './PokemonStats/PokemonStats'
+import { PokemonTypes } from './PokemonTypes/PokemonTypes'
 
 interface IPokemonInfo {
   id: number
@@ -16,6 +18,7 @@ export const PokemonInfo: FC<IPokemonInfo> = ({ id, onClose }) => {
   if (isLoading || !pokemon) {
     return null
   }
+  console.log(pokemon.types)
 
   return (
     <div className={styles.pokemon_info_container}>
@@ -46,14 +49,9 @@ export const PokemonInfo: FC<IPokemonInfo> = ({ id, onClose }) => {
       <div className={styles.pokemon_info_title_image}>
         <img src={pokemon.sprites.front_default ?? ''} alt='pokemon_image' />
       </div>
-      <div className={styles.pokemon_info_types}>
-        {pokemon.types.map((elem) => (
-          <div className={styles.pokemon_info_type} key={elem.type.name}>
-            {elem.type.name}
-          </div>
-        ))}
-      </div>
+      <PokemonTypes types={pokemon.types} />
       <PokemonStats stats={pokemon.stats} abilities={pokemon.abilities} />
+      <Button>ENTER</Button>
     </div>
   )
 }

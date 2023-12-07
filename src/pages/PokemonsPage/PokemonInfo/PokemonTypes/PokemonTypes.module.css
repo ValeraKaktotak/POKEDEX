@@ -1,0 +1,7 @@
+.pokemon_types {
+  @apply flex my-1 gap-3;
+}
+.pokemon_type {
+  @apply px-3 py-1 rounded-xl;
+  @apply bg-[#d1cbcb] text-white;
+}
