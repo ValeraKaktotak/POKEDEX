@@ -23,6 +23,13 @@ export const Pokemon: FC<IPokemonProps> = ({ pokemonInfo }) => {
   return (
     <div
       className={styles.pokemon_container}
+      role='button'
+      tabIndex={0}
+      onKeyPress={(event) => {
+        if (event.key === 'Enter') {
+          setPokemonId(pokemonInfo.id)
+        }
+      }}
       onClick={() => {
         setPokemonId(pokemonInfo.id)
       }}
@@ -31,7 +38,14 @@ export const Pokemon: FC<IPokemonProps> = ({ pokemonInfo }) => {
       <div className={styles.pokemon_number}>
         {getPokemonId(pokemonInfo.id)}
       </div>
-      {pokemonInfo.id === pokemonId && <PokemonInfo id={pokemonInfo.id} />}
+      {pokemonInfo.id === pokemonId && (
+        <PokemonInfo
+          id={pokemonInfo.id}
+          onClose={() => {
+            setPokemonId(null)
+          }}
+        />
+      )}
     </div>
   )
 }

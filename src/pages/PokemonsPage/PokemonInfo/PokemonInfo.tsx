@@ -7,9 +7,10 @@ import styles from './PokemonInfo.module.css'
 
 interface IPokemonInfo {
   id: number
+  onClose: () => void
 }
 
-export const PokemonInfo: FC<IPokemonInfo> = ({ id }) => {
+export const PokemonInfo: FC<IPokemonInfo> = ({ id, onClose }) => {
   const { data: pokemon, isLoading } = useRequestPokemonQuery(id)
   if (isLoading || !pokemon) {
     return null
@@ -18,7 +19,20 @@ export const PokemonInfo: FC<IPokemonInfo> = ({ id }) => {
   return (
     <div className={styles.pokemon_info_container}>
       <div className='text-right mb-2'>
-        <strong className='text-xl align-center cursor-pointer alert-del'>
+        <strong
+          tabIndex={0}
+          role='button'
+          onKeyDown={(event) => {
+            if (event.key === 'Enter') {
+              onClose()
+            }
+          }}
+          onClick={(e) => {
+            e.stopPropagation()
+            onClose()
+          }}
+          className='text-xl align-center cursor-pointer alert-del'
+        >
           &times;
         </strong>
       </div>

@@ -27,7 +27,7 @@ export const PokemonsPage: FC = () => {
         {data.pages.map((elem) =>
           elem.results.map((pokemon, index) => (
             <Pokemon
-              key={index}
+              key={index + 1}
               pokemonInfo={{
                 id: Number(pokemon.url.split('/').splice(-2, 1).join('')),
                 name: pokemon.name
