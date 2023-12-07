@@ -15,7 +15,6 @@ interface IPokemonProps {
 export const Pokemon: FC<IPokemonProps> = ({ pokemonInfo }) => {
   const [pokemonId, setPokemonId] = useState<number | null>(null)
   // const debouncedValue = useDebounce({ value: pokemonId })
-  console.log(pokemonId)
 
   if (!pokemonInfo) {
     return <div>Loading...</div>

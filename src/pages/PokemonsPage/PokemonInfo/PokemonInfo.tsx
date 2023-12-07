@@ -4,6 +4,7 @@ import { useRequestPokemonQuery } from '../../../utils/api/hooks/pokemon'
 
 import { getPokemonId } from '../../../utils/helpers/getPokemonId'
 import styles from './PokemonInfo.module.css'
+import { PokemonStats } from './PokemonStats/PokemonStats'
 
 interface IPokemonInfo {
   id: number
@@ -52,28 +53,7 @@ export const PokemonInfo: FC<IPokemonInfo> = ({ id, onClose }) => {
           </div>
         ))}
       </div>
-      <div className={styles.pokemon_info_stats}>
-        <div>
-          <div className={styles.pokemon_info_title}>Stats</div>
-          <ul>
-            {pokemon.stats.map((elem) => (
-              <li className={styles.pokemon_info_stat} key={elem.stat.name}>
-                {elem.stat.name}: {elem.base_stat}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <div className={styles.pokemon_info_title}>Abilities</div>
-          <ul>
-            {pokemon.abilities.map((elem, index) => (
-              <li className={styles.pokemon_info_stat} key={index}>
-                {elem.ability.name}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      <PokemonStats stats={pokemon.stats} abilities={pokemon.abilities} />
     </div>
   )
 }

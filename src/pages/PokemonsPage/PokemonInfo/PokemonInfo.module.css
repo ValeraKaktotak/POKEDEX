@@ -23,10 +23,3 @@
 .pokemon_info_title_image img {
   @apply w-full max-w-[188px] h-[188px];
 }
-.pokemon_info_stats {
-  @apply flex flex-col gap-3;
-}
-.pokemon_info_stat {
-  @apply capitalize text-left;
-  @apply border-b-2 border-[#1a1a1a] p-1;
-}

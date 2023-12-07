@@ -1,0 +1,11 @@
+.pokemon_stats {
+  @apply flex flex-col gap-3;
+}
+.pokemon_stats_stat {
+  @apply capitalize text-left;
+  @apply border-b-2 border-[#1a1a1a] p-1;
+}
+.pokemon_stats_title {
+  @apply flex justify-between items-baseline flex-wrap;
+  @apply font-bold capitalize;
+}
