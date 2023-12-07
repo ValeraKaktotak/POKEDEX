@@ -2,6 +2,20 @@
   @apply flex my-1 gap-3;
 }
 .pokemon_type {
-  @apply px-3 py-1 rounded-xl;
-  @apply bg-[#d1cbcb] text-white;
+  @apply px-3 py-1 rounded-xl text-[#1a1a1a] border-2 border-[#1a1a1a];
+}
+.grass {
+  @apply text-green-400 border-2 border-green-400;
+}
+.bug {
+  @apply text-green-800 border-2 border-green-800;
+}
+.poison {
+  @apply text-purple-600 border-2 border-purple-600;
+}
+.fire {
+  @apply text-rose-600 border-2 border-rose-600;
+}
+.flying {
+  @apply text-blue-500 border-2 border-blue-500;
 }

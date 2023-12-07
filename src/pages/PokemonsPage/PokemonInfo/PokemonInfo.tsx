@@ -18,7 +18,6 @@ export const PokemonInfo: FC<IPokemonInfo> = ({ id, onClose }) => {
   if (isLoading || !pokemon) {
     return null
   }
-  console.log(pokemon.types)
 
   return (
     <div className={styles.pokemon_info_container}>

@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import type { FC } from 'react'
 import styles from './PokemonTypes.module.css'
 import type { IPokemonTypes } from './types'
@@ -10,7 +11,10 @@ export const PokemonTypes: FC<IPokemonTypesProps> = ({ types }) => {
   return (
     <div className={styles.pokemon_types}>
       {types.map((elem) => (
-        <div className={styles.pokemon_type} key={elem.type.name}>
+        <div
+          className={classNames(styles.pokemon_type, styles[elem.type.name])}
+          key={elem.type.name}
+        >
           {elem.type.name}
         </div>
       ))}
