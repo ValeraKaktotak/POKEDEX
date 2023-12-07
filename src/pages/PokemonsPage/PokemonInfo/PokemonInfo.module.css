@@ -1,11 +1,11 @@
 .pokemon_info_container {
-  @apply w-full max-w-[220px];
-  @apply bg-white text-[#1a1a1a] rounded-xl py-6 px-4 shadow-lg cursor-pointer;
-  @apply absolute top-20 z-10;
+  @apply w-full;
+  @apply bg-white text-[#1a1a1a] rounded-xl pt-3 pb-5 px-4 shadow-lg cursor-default;
+  @apply absolute top-0 left-0 z-10;
 }
 .pokemon_info_title {
   @apply flex justify-between items-baseline flex-wrap;
-  @apply font-bold;
+  @apply font-bold capitalize;
 }
 .pokemon_info_title_name {
   @apply text-3xl capitalize font-bold;

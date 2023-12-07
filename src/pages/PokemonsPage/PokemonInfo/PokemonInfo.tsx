@@ -2,6 +2,7 @@ import type { FC } from 'react'
 
 import { useRequestPokemonQuery } from '../../../utils/api/hooks/pokemon'
 
+import { getPokemonId } from '../../../utils/helpers/getPokemonId'
 import styles from './PokemonInfo.module.css'
 
 interface IPokemonInfo {
@@ -16,6 +17,17 @@ export const PokemonInfo: FC<IPokemonInfo> = ({ id }) => {
 
   return (
     <div className={styles.pokemon_info_container}>
+      <div className='text-right mb-2'>
+        <strong className='text-xl align-center cursor-pointer alert-del'>
+          &times;
+        </strong>
+      </div>
+      <div className={styles.pokemon_info_title}>
+        <div className={styles.pokemon_info_name}>{pokemon.name}</div>
+        <div className={styles.pokemon_info_number}>
+          {getPokemonId(pokemon.id)}
+        </div>
+      </div>
       <div className={styles.pokemon_info_title_image}>
         <img src={pokemon.sprites.front_default ?? ''} alt='pokemon_image' />
       </div>

@@ -1,6 +1,5 @@
-import { type FC,useEffect } from 'react'
+import { useEffect, type FC } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { Link } from 'react-router-dom'
 
 import { useRequestPokemonsInfiniteQuery } from '../../utils/api/hooks/pokemons'
 
@@ -27,19 +26,13 @@ export const PokemonsPage: FC = () => {
       <div className={styles.pokemons_container}>
         {data.pages.map((elem) =>
           elem.results.map((pokemon, index) => (
-            <Link
-              to={`/pokemon/${Number(
-                pokemon.url.split('/').splice(-2, 1).join('')
-              )}`}
+            <Pokemon
               key={index}
-            >
-              <Pokemon
-                pokemonInfo={{
-                  id: Number(pokemon.url.split('/').splice(-2, 1).join('')),
-                  name: pokemon.name
-                }}
-              />
-            </Link>
+              pokemonInfo={{
+                id: Number(pokemon.url.split('/').splice(-2, 1).join('')),
+                name: pokemon.name
+              }}
+            />
           ))
         )}
       </div>
