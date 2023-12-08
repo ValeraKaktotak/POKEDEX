@@ -21,6 +21,9 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'prettier', 'simple-import-sort'],
   rules: {
+    // 'children' is missing in props validationeslintreact/prop-types
+    //'react/prop-types': 0,
+
     // Promises must be awaited, end with a call to .catch, end with a call to .then with a rejection handler or be explicitly marked as ignored with the `void` operator
     '@typescript-eslint/no-floating-promises': 0,
 

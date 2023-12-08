@@ -1,8 +1,7 @@
-import { type FC,useState } from 'react'
+import { useState, type FC } from 'react'
 
-import { getPokemonId } from '../../../utils/helpers/getPokemonId'
-import { useDebounce } from '../../../utils/helpers/useDebounce'
 import { PokemonInfo } from '..'
+import { getPokemonId } from '../../../utils/helpers/getPokemonId'
 
 import styles from './Pokemon.module.css'
 
@@ -15,7 +14,7 @@ interface IPokemonProps {
 
 export const Pokemon: FC<IPokemonProps> = ({ pokemonInfo }) => {
   const [pokemonId, setPokemonId] = useState<number | null>(null)
-  const debouncedValue = useDebounce({ value: pokemonId })
+  // const debouncedValue = useDebounce({ value: pokemonId })
 
   if (!pokemonInfo) {
     return <div>Loading...</div>
@@ -23,18 +22,29 @@ export const Pokemon: FC<IPokemonProps> = ({ pokemonInfo }) => {
   return (
     <div
       className={styles.pokemon_container}
-      onMouseEnter={() => {
-        setPokemonId(pokemonInfo.id)
+      role='button'
+      tabIndex={0}
+      onKeyPress={(event) => {
+        if (event.key === 'Enter') {
+          setPokemonId(pokemonInfo.id)
+        }
       }}
-      onMouseLeave={() => {
-        setPokemonId(null)
+      onClick={() => {
+        setPokemonId(pokemonInfo.id)
       }}
     >
       <div className={styles.pokemon_name}>{pokemonInfo.name}</div>
       <div className={styles.pokemon_number}>
         {getPokemonId(pokemonInfo.id)}
       </div>
-      {pokemonInfo.id === debouncedValue && <PokemonInfo id={pokemonInfo.id} />}
+      {pokemonInfo.id === pokemonId && (
+        <PokemonInfo
+          id={pokemonInfo.id}
+          onClose={() => {
+            setPokemonId(null)
+          }}
+        />
+      )}
     </div>
   )
 }

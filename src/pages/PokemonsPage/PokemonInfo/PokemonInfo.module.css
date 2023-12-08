@@ -1,11 +1,11 @@
 .pokemon_info_container {
-  @apply w-full max-w-[220px];
-  @apply bg-white text-[#1a1a1a] rounded-xl py-6 px-4 shadow-lg cursor-pointer;
-  @apply absolute top-20 z-10;
+  @apply w-full;
+  @apply bg-white text-[#1a1a1a] rounded-xl pt-3 pb-5 px-4 shadow-lg cursor-default;
+  @apply absolute top-0 left-0 z-10;
 }
 .pokemon_info_title {
   @apply flex justify-between items-baseline flex-wrap;
-  @apply font-bold;
+  @apply font-bold capitalize;
 }
 .pokemon_info_title_name {
   @apply text-3xl capitalize font-bold;
@@ -13,20 +13,6 @@
 .pokemon_info_title_id {
   @apply text-lg font-normal;
 }
-.pokemon_info_types {
-  @apply flex my-1 gap-3;
-}
-.pokemon_info_type {
-  @apply px-3 py-1 rounded-xl;
-  @apply bg-[#d1cbcb] text-white;
-}
 .pokemon_info_title_image img {
   @apply w-full max-w-[188px] h-[188px];
-}
-.pokemon_info_stats {
-  @apply flex flex-col gap-3;
-}
-.pokemon_info_stat {
-  @apply capitalize text-left;
-  @apply border-b-2 border-[#1a1a1a] p-1;
 }

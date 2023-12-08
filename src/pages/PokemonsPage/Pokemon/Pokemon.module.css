@@ -1,5 +1,5 @@
 .pokemon_container {
-  @apply flex text-left gap-1 justify-between;
+  @apply flex flex-wrap text-left gap-1 justify-between;
   @apply shadow-lg p-8 rounded-xl cursor-pointer;
   @apply relative;
 }
