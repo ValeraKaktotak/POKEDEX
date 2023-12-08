@@ -2,6 +2,7 @@ import type { FC } from 'react'
 
 import { useRequestPokemonQuery } from '../../../utils/api/hooks/pokemon'
 
+import { useNavigate } from 'react-router-dom'
 import { Button } from '../../../common/buttons/Button/Button'
 import { getPokemonId } from '../../../utils/helpers/getPokemonId'
 import styles from './PokemonInfo.module.css'
@@ -15,6 +16,7 @@ interface IPokemonInfo {
 
 export const PokemonInfo: FC<IPokemonInfo> = ({ id, onClose }) => {
   const { data: pokemon, isLoading } = useRequestPokemonQuery(id)
+  const navigate = useNavigate()
   if (isLoading || !pokemon) {
     return null
   }
@@ -50,7 +52,13 @@ export const PokemonInfo: FC<IPokemonInfo> = ({ id, onClose }) => {
       </div>
       <PokemonTypes types={pokemon.types} />
       <PokemonStats stats={pokemon.stats} abilities={pokemon.abilities} />
-      <Button>ENTER</Button>
+      <Button
+        onClick={() => {
+          navigate(`/pokemon/${pokemon.id}`)
+        }}
+      >
+        ENTER
+      </Button>
     </div>
   )
 }

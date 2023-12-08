@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-
+import PropTypes from 'prop-types'
 import styles from './Button.module.css'
 
 type ButtonVariant = 'contained' | 'outlined' | 'text'
@@ -53,4 +53,12 @@ export const Button: React.FC<ButtonProps> = ({
       )}
     </button>
   )
+}
+
+Button.propTypes = {
+  children: PropTypes.string, // Добавьте проверку типов для children
+  variant: PropTypes.oneOf(['contained', 'outlined', 'text']),
+  loading: PropTypes.bool,
+  startIcon: PropTypes.node,
+  disabled: PropTypes.bool
 }
