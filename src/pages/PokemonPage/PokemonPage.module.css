@@ -1,0 +1,16 @@
+.page {
+}
+.name_container {
+  @apply flex gap-2 items-baseline;
+  @apply font-bold text-2xl text-black capitalize;
+}
+.page_container_number {
+  @apply font-light text-base;
+}
+.content {
+  @apply flex flex-col gap-3;
+  @apply sm:flex-row;
+}
+.image img {
+  @apply w-full;
+}

@@ -12,6 +12,8 @@ interface useRequestPokemonEvolutionParams {
 export const useRequestPokemonEvolution = (
   param: useRequestPokemonEvolutionParams
 ): UseQueryResult<IEvolution> => {
+  console.log()
+
   return useQuery<IEvolution>(
     ['pokemonEvolution', param.id],
     async () => {
