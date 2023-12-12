@@ -14,7 +14,7 @@ export const useRequestPokemonEvolution = (
 ): UseQueryResult<IEvolution> => {
   console.log()
 
-  return useQuery<IEvolution>(
+  return useQuery<IEvolution | any>(
     ['pokemonEvolution', param.id],
     async () => {
       const result = await requestPokemonEvolution({ params: { id: param.id } })

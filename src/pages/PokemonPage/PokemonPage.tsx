@@ -9,9 +9,9 @@ import { PokemonStats } from '../PokemonsPage/PokemonInfo/PokemonStats/PokemonSt
 
 export const PokemonPage: FC = () => {
   const params = useParams<{ pokemonId: string }>()
+
   const { data: pokemonData, isLoading: pokemonLoading } =
     useRequestPokemonQuery(Number(params.pokemonId))
-
   const { data: pokemonEvolutionData, isLoading: pokemonEvolutionDataLoading } =
     useRequestPokemonEvolution({
       id: Number(params.pokemonId),
@@ -25,24 +25,28 @@ export const PokemonPage: FC = () => {
 
   return (
     <div className={styles.page}>
-      <div className={styles.name_container}>
-        <div>{pokemonData.name}</div>
-        <div className={styles.page_container_number}>
-          {getPokemonId(pokemonData.id)}
-        </div>
-      </div>
-      <div className={styles.content}>
-        <div className={styles.image}>
-          <img
-            src={pokemonData.sprites.front_default ?? ''}
-            alt='pokemon_image'
-          />
-        </div>
-        <PokemonStats
-          stats={pokemonData.stats}
-          abilities={pokemonData.abilities}
-        />
-      </div>
+      {pokemonData && (
+        <>
+          <div className={styles.name_container}>
+            <div>{pokemonData.name}</div>
+            <div className={styles.page_container_number}>
+              {getPokemonId(pokemonData.id)}
+            </div>
+          </div>
+          <div className={styles.content}>
+            <div className={styles.image}>
+              <img
+                src={pokemonData.sprites.front_default ?? ''}
+                alt='pokemon_image'
+              />
+            </div>
+            <PokemonStats
+              stats={pokemonData.stats}
+              abilities={pokemonData.abilities}
+            />
+          </div>
+        </>
+      )}
     </div>
   )
 }
