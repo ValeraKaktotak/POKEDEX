@@ -1,24 +1,29 @@
 import { type FC } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import styles from './PokemonPage.module.css'
 
-import { useRequestPokemonEvolution } from '../../utils/api/hooks/evolution-chain/id'
+import { Button } from '../../common/buttons/Button/Button'
+import { useRequestPokemonEncountersQuery } from '../../utils/api/hooks/encounters'
 import { useRequestPokemonQuery } from '../../utils/api/hooks/pokemon'
 import { getPokemonId } from '../../utils/helpers/getPokemonId'
 import { PokemonStats } from '../PokemonsPage/PokemonInfo/PokemonStats/PokemonStats'
 
 export const PokemonPage: FC = () => {
   const params = useParams<{ pokemonId: string }>()
+  const navigate = useNavigate()
 
   const { data: pokemonData, isLoading: pokemonLoading } =
     useRequestPokemonQuery(Number(params.pokemonId))
-  const { data: pokemonEvolutionData, isLoading: pokemonEvolutionDataLoading } =
-    useRequestPokemonEvolution({
-      id: Number(params.pokemonId),
-      isLoaded: !pokemonLoading
-    })
 
-  const isData = pokemonData && pokemonEvolutionData
+  const {
+    data: pokemonEncountersData,
+    isLoading: pokemonEvolutionDataLoading
+  } = useRequestPokemonEncountersQuery({
+    id: Number(params.pokemonId),
+    isLoaded: !pokemonLoading
+  })
+
+  const isData = pokemonData // && pokemonEncountersData
   const isLoading = pokemonLoading && pokemonEvolutionDataLoading
 
   if (isLoading || !isData) return <div>LOADING...</div>
@@ -47,6 +52,23 @@ export const PokemonPage: FC = () => {
           </div>
         </>
       )}
+      {pokemonData.id > 1 && (
+        <Button
+          onClick={() => {
+            navigate(`/pokemon/${pokemonData.id - 1}`)
+          }}
+        >
+          PREV
+        </Button>
+      )}
+
+      <Button
+        onClick={() => {
+          navigate(`/pokemon/${pokemonData.id + 1}`)
+        }}
+      >
+        NEXT
+      </Button>
     </div>
   )
 }

@@ -4,13 +4,19 @@ import { useQuery } from 'react-query'
 import { requestPokemonEncounter } from '../../requests/pokemon/id/encounters'
 import type { IPokemonEncounter } from '../../requests/pokemon/id/encounters/types'
 
-export const useRequestPokemonEncountersQuery = (
+interface useRequestPokemonEncountersQueryParams {
   id: number
-): UseQueryResult<IPokemonEncounter> =>
+  isLoaded?: boolean
+}
+
+export const useRequestPokemonEncountersQuery = ({
+  ...param
+}: useRequestPokemonEncountersQueryParams): UseQueryResult<IPokemonEncounter> =>
   useQuery<IPokemonEncounter>(
-    ['pokemon', id],
-    async () => await requestPokemonEncounter({ params: { id } }),
+    ['pokemonEncounter', param.id],
+    async () => await requestPokemonEncounter({ params: { id: param.id } }),
     {
+      enabled: param.isLoaded,
       refetchOnWindowFocus: false,
       keepPreviousData: true
     }
