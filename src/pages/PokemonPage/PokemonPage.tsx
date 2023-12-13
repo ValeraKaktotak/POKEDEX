@@ -52,23 +52,25 @@ export const PokemonPage: FC = () => {
           </div>
         </>
       )}
-      {pokemonData.id > 1 && (
+      <div className={styles.buttons_container}>
+        {pokemonData.id > 1 && (
+          <Button
+            onClick={() => {
+              navigate(`/pokemon/${pokemonData.id - 1}`)
+            }}
+          >
+            PREV
+          </Button>
+        )}
+
         <Button
           onClick={() => {
-            navigate(`/pokemon/${pokemonData.id - 1}`)
+            navigate(`/pokemon/${pokemonData.id + 1}`)
           }}
         >
-          PREV
+          NEXT
         </Button>
-      )}
-
-      <Button
-        onClick={() => {
-          navigate(`/pokemon/${pokemonData.id + 1}`)
-        }}
-      >
-        NEXT
-      </Button>
+      </div>
     </div>
   )
 }

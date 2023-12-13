@@ -1,4 +1,5 @@
 .page {
+  @apply sm:w-[260px];
 }
 .name_container {
   @apply flex gap-2 items-baseline;
@@ -13,4 +14,7 @@
 }
 .image img {
   @apply w-full;
+}
+.buttons_container {
+  @apply flex flex-row flex-nowrap justify-between gap-4;
 }
