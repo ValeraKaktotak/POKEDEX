@@ -5,6 +5,7 @@ import styles from './PokemonPage.module.css'
 import { Button } from '../../common/buttons/Button/Button'
 import { useRequestPokemonEncountersQuery } from '../../utils/api/hooks/encounters'
 import { useRequestPokemonQuery } from '../../utils/api/hooks/pokemon'
+import { useRequestPokemonSpecies } from '../../utils/api/hooks/pokemon-species/id'
 import { getPokemonId } from '../../utils/helpers/getPokemonId'
 import { PokemonStats } from '../PokemonsPage/PokemonInfo/PokemonStats/PokemonStats'
 
@@ -14,6 +15,8 @@ export const PokemonPage: FC = () => {
 
   const { data: pokemonData, isLoading: pokemonLoading } =
     useRequestPokemonQuery(Number(params.pokemonId))
+  const { data } = useRequestPokemonSpecies({ id: Number(params.pokemonId) })
+  console.log(data)
 
   const {
     data: pokemonEncountersData,

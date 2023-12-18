@@ -17,7 +17,7 @@ export const requestPokemonSpecies = async ({
   params
 }: RequestPokemonSpeciesParams): Promise<IPokemonSpecies> => {
   const response = await pokemonAPI.get<IPokemonSpecies>(
-    `species/${params.id}`,
+    `pokemon-species/${params.id}`,
     {
       ...config
     }
