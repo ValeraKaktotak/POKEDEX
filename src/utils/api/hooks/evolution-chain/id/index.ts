@@ -20,8 +20,8 @@ export const useRequestPokemonEvolution = (
     },
     {
       enabled: param.isLoaded,
-      refetchOnWindowFocus: false,
-      keepPreviousData: true
+      refetchOnWindowFocus: false
+      // keepPreviousData: true
     }
   )
 }
