@@ -53,7 +53,10 @@ export const PokemonPage: FC = () => {
               abilities={pokemonData.abilities}
             />
           </div>
-          <PokemonEvolutionChain id={chainId} />
+          <PokemonEvolutionChain
+            chainId={chainId}
+            pokemonId={Number(params.pokemonId)}
+          />
         </>
       )}
       <div className={styles.buttons_container}>
