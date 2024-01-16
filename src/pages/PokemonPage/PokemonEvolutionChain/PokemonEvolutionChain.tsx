@@ -39,6 +39,13 @@ export const PokemonEvolutionChain: FC<IPokemonEvolutionChain> = ({
 
   const chainData: Chain = pokemonEvolutionData.chain
   const chainArray = generateEvolutionChain(chainData)
+  console.log(chainArray)
 
-  return <PokemonEvolutionChainItem chain={chainArray} />
+  return (
+    <>
+      {chainArray.map((item) => (
+        <PokemonEvolutionChainItem key={item.name} info={item} />
+      ))}
+    </>
+  )
 }
