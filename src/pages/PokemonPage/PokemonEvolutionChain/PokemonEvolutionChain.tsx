@@ -43,10 +43,14 @@ export const PokemonEvolutionChain: FC<IPokemonEvolutionChain> = ({
 
   return (
     <>
-      <div className='title'>Evolution Chain</div>
+      <div className='title text-left'>Evolution Chain</div>
       <div className={styles.evolution_container}>
         {chainArray.map((item) => (
-          <PokemonEvolutionChainItem key={item.name} info={item} />
+          <PokemonEvolutionChainItem
+            key={item.name}
+            info={item}
+            isActive={pokemonId === +item.url.split('/').splice(-2, 1).join('')}
+          />
         ))}
       </div>
     </>
