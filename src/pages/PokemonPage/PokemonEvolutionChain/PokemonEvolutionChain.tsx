@@ -1,7 +1,8 @@
 import type { FC } from 'react'
 import { useRequestPokemonEvolution } from '../../../utils/api/hooks/evolution-chain/id'
 import type { Chain } from '../../../utils/api/requests/evolution-chain/id/types'
-import { PokemonEvolutionChainItem } from './PokemonEvolutionChainItem/PokemonEvolutionChainItem'
+import styles from './PokemonEvolutionChain.module.css'
+import { PokemonEvolutionChainItem } from './PokemonEvolutionChainItem'
 
 interface IPokemonEvolutionChain {
   chainId: number
@@ -39,13 +40,15 @@ export const PokemonEvolutionChain: FC<IPokemonEvolutionChain> = ({
 
   const chainData: Chain = pokemonEvolutionData.chain
   const chainArray = generateEvolutionChain(chainData)
-  console.log(chainArray)
 
   return (
     <>
-      {chainArray.map((item) => (
-        <PokemonEvolutionChainItem key={item.name} info={item} />
-      ))}
+      <div className='title'>Evolution Chain</div>
+      <div className={styles.evolution_container}>
+        {chainArray.map((item) => (
+          <PokemonEvolutionChainItem key={item.name} info={item} />
+        ))}
+      </div>
     </>
   )
 }

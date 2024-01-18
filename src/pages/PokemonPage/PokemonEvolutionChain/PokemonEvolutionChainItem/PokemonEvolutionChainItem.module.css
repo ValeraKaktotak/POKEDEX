@@ -1,0 +1,3 @@
+.container {
+  @apply rounded-lg shadow-lg gap-3;
+}

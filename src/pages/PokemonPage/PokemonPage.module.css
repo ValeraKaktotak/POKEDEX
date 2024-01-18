@@ -1,5 +1,6 @@
 .page {
-  @apply sm:w-[260px];
+  @apply my-0 mx-auto;
+  @apply sm:w-[320px];
 }
 .name_container {
   @apply flex gap-2 items-baseline;

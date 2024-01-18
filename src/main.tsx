@@ -4,7 +4,7 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 
 import App from './App.tsx'
 
-import './index.css'
+import './assets/css/global.css'
 
 const queryClient = new QueryClient()
 
