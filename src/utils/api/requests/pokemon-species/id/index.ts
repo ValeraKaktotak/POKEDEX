@@ -1,6 +1,7 @@
 import type { AxiosRequestConfig } from 'axios'
 
 import { pokemonAPI } from '../../../instance'
+
 import type { IPokemonSpecies } from './types'
 
 interface IParams {

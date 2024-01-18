@@ -1,8 +1,11 @@
 import type { FC } from 'react'
+
 import { useRequestPokemonEvolution } from '../../../utils/api/hooks/evolution-chain/id'
 import type { Chain } from '../../../utils/api/requests/evolution-chain/id/types'
-import styles from './PokemonEvolutionChain.module.css'
+
 import { PokemonEvolutionChainItem } from './PokemonEvolutionChainItem'
+
+import styles from './PokemonEvolutionChain.module.css'
 
 interface IPokemonEvolutionChain {
   chainId: number

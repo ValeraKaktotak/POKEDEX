@@ -1,13 +1,14 @@
 import type { FC } from 'react'
-
-import { useRequestPokemonQuery } from '../../../utils/api/hooks/pokemon'
-
 import { useNavigate } from 'react-router-dom'
+
 import { Button } from '../../../common/buttons/Button/Button'
+import { useRequestPokemonQuery } from '../../../utils/api/hooks/pokemon'
 import { getPokemonId } from '../../../utils/helpers/getPokemonId'
-import styles from './PokemonInfo.module.css'
+
 import { PokemonStats } from './PokemonStats/PokemonStats'
 import { PokemonTypes } from './PokemonTypes/PokemonTypes'
+
+import styles from './PokemonInfo.module.css'
 
 interface IPokemonInfo {
   id: number

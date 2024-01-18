@@ -1,7 +1,9 @@
 import classNames from 'classnames'
 import type { FC } from 'react'
 import { Link } from 'react-router-dom'
+
 import { useRequestPokemonQuery } from '../../../../utils/api/hooks/pokemon'
+
 import styles from './PokemonEvolutionChainItem.module.css'
 
 interface IPokemonEvolutionChainItem {

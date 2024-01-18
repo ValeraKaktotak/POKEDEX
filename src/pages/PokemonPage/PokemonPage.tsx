@@ -1,13 +1,15 @@
 import { type FC } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import styles from './PokemonPage.module.css'
 
 import { Button } from '../../common/buttons/Button/Button'
 import { useRequestPokemonQuery } from '../../utils/api/hooks/pokemon'
 import { useRequestPokemonSpecies } from '../../utils/api/hooks/pokemon-species/id'
 import { getPokemonId } from '../../utils/helpers/getPokemonId'
 import { PokemonStats } from '../PokemonsPage/PokemonInfo/PokemonStats/PokemonStats'
+
 import { PokemonEvolutionChain } from './PokemonEvolutionChain'
+
+import styles from './PokemonPage.module.css'
 
 export const PokemonPage: FC = () => {
   const params = useParams<{ pokemonId: string }>()
