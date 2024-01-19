@@ -1,7 +1,9 @@
 import classNames from 'classnames'
 import type { FC } from 'react'
-import styles from './PokemonTypes.module.css'
+
 import type { IPokemonTypes } from './types'
+
+import styles from './PokemonTypes.module.css'
 
 interface IPokemonTypesProps {
   types: IPokemonTypes[]

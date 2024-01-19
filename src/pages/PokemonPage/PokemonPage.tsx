@@ -1,12 +1,15 @@
 import { type FC } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import styles from './PokemonPage.module.css'
 
 import { Button } from '../../common/buttons/Button/Button'
-import { useRequestPokemonEncountersQuery } from '../../utils/api/hooks/encounters'
 import { useRequestPokemonQuery } from '../../utils/api/hooks/pokemon'
+import { useRequestPokemonSpecies } from '../../utils/api/hooks/pokemon-species/id'
 import { getPokemonId } from '../../utils/helpers/getPokemonId'
 import { PokemonStats } from '../PokemonsPage/PokemonInfo/PokemonStats/PokemonStats'
+
+import { PokemonEvolutionChain } from './PokemonEvolutionChain'
+
+import styles from './PokemonPage.module.css'
 
 export const PokemonPage: FC = () => {
   const params = useParams<{ pokemonId: string }>()
@@ -15,16 +18,18 @@ export const PokemonPage: FC = () => {
   const { data: pokemonData, isLoading: pokemonLoading } =
     useRequestPokemonQuery(Number(params.pokemonId))
 
-  const {
-    data: pokemonEncountersData,
-    isLoading: pokemonEvolutionDataLoading
-  } = useRequestPokemonEncountersQuery({
-    id: Number(params.pokemonId),
-    isLoaded: !pokemonLoading
-  })
+  const { data: pokemonSpeciesData, isLoading: pokemonSpeciesLoading } =
+    useRequestPokemonSpecies({
+      id: Number(params.pokemonId),
+      isLoaded: !pokemonLoading
+    })
 
-  const isData = pokemonData // && pokemonEncountersData
-  const isLoading = pokemonLoading && pokemonEvolutionDataLoading
+  const chainId = Number(
+    pokemonSpeciesData?.evolution_chain.url.split('/').splice(-2, 1).join('')
+  )
+
+  const isData = pokemonData && pokemonSpeciesData
+  const isLoading = pokemonLoading && pokemonSpeciesLoading
 
   if (isLoading || !isData) return <div>LOADING...</div>
 
@@ -50,6 +55,10 @@ export const PokemonPage: FC = () => {
               abilities={pokemonData.abilities}
             />
           </div>
+          <PokemonEvolutionChain
+            chainId={chainId}
+            pokemonId={Number(params.pokemonId)}
+          />
         </>
       )}
       <div className={styles.buttons_container}>

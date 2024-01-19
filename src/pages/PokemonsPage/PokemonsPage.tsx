@@ -1,4 +1,4 @@
-import { useEffect, type FC } from 'react'
+import { type FC,useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 
 import { useRequestPokemonsInfiniteQuery } from '../../utils/api/hooks/pokemons'

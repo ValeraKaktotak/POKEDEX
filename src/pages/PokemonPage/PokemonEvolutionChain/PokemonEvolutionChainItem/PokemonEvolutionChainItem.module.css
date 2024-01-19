@@ -1,0 +1,10 @@
+.container {
+  @apply rounded-lg shadow-lg gap-3;
+  @apply border-2 border-transparent box-border;
+}
+.name {
+  @apply text-center text-lg;
+}
+.active {
+  @apply border-2 border-[#1a1a1a] box-border;
+}

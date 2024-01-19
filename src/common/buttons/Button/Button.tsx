@@ -1,5 +1,6 @@
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
+
 import styles from './Button.module.css'
 
 type ButtonVariant = 'contained' | 'outlined' | 'text'

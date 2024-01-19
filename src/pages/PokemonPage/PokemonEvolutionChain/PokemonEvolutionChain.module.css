@@ -1,0 +1,3 @@
+.evolution_container {
+  @apply flex justify-between py-5 flex-wrap;
+}

@@ -1,6 +1,8 @@
 import type { FC } from 'react'
-import styles from './PokemonStats.module.css'
+
 import type { IPokemonAbility, IPokemonStats } from './types'
+
+import styles from './PokemonStats.module.css'
 
 interface IPokemonStatsProps {
   stats: IPokemonStats[]

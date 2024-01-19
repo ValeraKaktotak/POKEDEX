@@ -12,7 +12,7 @@ interface useRequestPokemonEvolutionParams {
 export const useRequestPokemonEvolution = (
   param: useRequestPokemonEvolutionParams
 ): UseQueryResult<IEvolution> => {
-  return useQuery<IEvolution | any>(
+  return useQuery<IEvolution>(
     ['pokemonEvolution', param.id],
     async () => {
       const result = await requestPokemonEvolution({ params: { id: param.id } })
@@ -20,8 +20,8 @@ export const useRequestPokemonEvolution = (
     },
     {
       enabled: param.isLoaded,
-      refetchOnWindowFocus: false,
-      keepPreviousData: true
+      refetchOnWindowFocus: false
+      // keepPreviousData: true
     }
   )
 }
