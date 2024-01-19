@@ -20,8 +20,18 @@ const generateEvolutionChain = (
     ...chain,
     { name: pokemonChain.species.name, url: pokemonChain.species.url }
   ]
+
   if (!pokemonChain.evolves_to.length) {
     return chain
+  }
+  if (pokemonChain.evolves_to.length > 1) {
+    const parent = chain.splice(-1, 1)
+    return [
+      ...parent,
+      ...pokemonChain.evolves_to.flatMap((evolvesTo) =>
+        generateEvolutionChain(evolvesTo, chain)
+      )
+    ]
   }
   return generateEvolutionChain(pokemonChain.evolves_to[0], chain)
 }
