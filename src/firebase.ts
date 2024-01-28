@@ -41,7 +41,7 @@ export const loginWithEmailAndPassword = async (
 // Hook for registration
 export interface IUser {
   firstName: string
-  last: string
+  lastName: string
   email: string
   city: string
 }
