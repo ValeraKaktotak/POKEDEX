@@ -1,4 +1,4 @@
-import type { FC } from 'react'
+import { useEffect, useRef, type FC } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { Button } from '../../../common/buttons/Button/Button'
@@ -18,23 +18,42 @@ interface IPokemonInfo {
 export const PokemonInfo: FC<IPokemonInfo> = ({ id, onClose }) => {
   const { data: pokemon, isLoading } = useRequestPokemonQuery(id)
   const navigate = useNavigate()
+  const blockRef = useRef<HTMLDivElement>(null)
+  const closeHandleClickOutside = (event: MouseEvent): void => {
+    if (blockRef.current && !blockRef.current.contains(event.target as Node)) {
+      // Клик был вне блока
+      onClose()
+    }
+  }
+
+  useEffect(() => {
+    // Добавляем обработчик события клика при монтировании компонента
+    document.addEventListener('click', closeHandleClickOutside)
+
+    // Убираем обработчик события клика при размонтировании компонента
+    return () => {
+      document.removeEventListener('click', closeHandleClickOutside)
+    }
+  }, [])
+
   if (isLoading || !pokemon) {
     return null
   }
 
   return (
-    <div className={styles.pokemon_info_container}>
+    <div ref={blockRef} className={styles.pokemon_info_container}>
       <div className='text-right mb-2'>
         <strong
           tabIndex={0}
           role='button'
-          onKeyDown={(event) => {
+          onKeyPress={(event) => {
             if (event.key === 'Enter') {
+              event.stopPropagation()
               onClose()
             }
           }}
-          onClick={(e) => {
-            e.stopPropagation()
+          onClick={(event) => {
+            event.stopPropagation()
             onClose()
           }}
           className='text-xl align-center cursor-pointer alert-del'

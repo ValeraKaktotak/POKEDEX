@@ -1,16 +1,18 @@
 import React, { type FC } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
-import styles from './Auth.module.css'
+import { userRegistration } from '../../firebase'
+import styles from './AuthPage.module.css'
 
 interface Inputs {
   firstName: string
   lastName: string
   email: string
+  city: string
   password: string
 }
 
-export const Auth: FC = () => {
+export const AuthPage: FC = () => {
   const {
     register,
     handleSubmit,
@@ -20,6 +22,7 @@ export const Auth: FC = () => {
   const [isSignUp, setSignUp] = React.useState<boolean>(true)
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     console.log(data)
+    userRegistration(data)
   }
 
   return (
@@ -34,6 +37,8 @@ export const Auth: FC = () => {
           <input {...register('lastName', { required: true })} />
           <label>Email</label>
           <input {...register('email', { required: true })} />
+          <label>City</label>
+          <input {...register('city', { required: true })} />
           <label>Password</label>
           <input
             type='password'

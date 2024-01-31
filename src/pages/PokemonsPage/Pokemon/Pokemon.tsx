@@ -1,7 +1,7 @@
-import { type FC,useState } from 'react'
+import { useState, type FC } from 'react'
 
-import { getPokemonId } from '../../../utils/helpers/getPokemonId'
 import { PokemonInfo } from '..'
+import { getPokemonId } from '../../../utils/helpers/getPokemonId'
 
 import styles from './Pokemon.module.css'
 
@@ -14,7 +14,6 @@ interface IPokemonProps {
 
 export const Pokemon: FC<IPokemonProps> = ({ pokemonInfo }) => {
   const [pokemonId, setPokemonId] = useState<number | null>(null)
-  // const debouncedValue = useDebounce({ value: pokemonId })
 
   if (!pokemonInfo) {
     return <div>Loading...</div>
@@ -29,8 +28,9 @@ export const Pokemon: FC<IPokemonProps> = ({ pokemonInfo }) => {
           setPokemonId(pokemonInfo.id)
         }
       }}
-      onClick={() => {
+      onClick={(e) => {
         setPokemonId(pokemonInfo.id)
+        e.stopPropagation()
       }}
     >
       <div className={styles.pokemon_name}>{pokemonInfo.name}</div>
