@@ -28,9 +28,13 @@ export const Auth: FC = () => {
       {isSignUp && (
         // eslint-disable-next-line @typescript-eslint/no-misused-promises
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+          <label>First Name</label>
           <input {...register('firstName', { required: true })} />
+          <label>Last Name</label>
           <input {...register('lastName', { required: true })} />
+          <label>Email</label>
           <input {...register('email', { required: true })} />
+          <label>Password</label>
           <input
             type='password'
             {...register('password', { required: true })}
