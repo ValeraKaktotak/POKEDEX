@@ -34,7 +34,7 @@ export const userLogIn = async (
   try {
     return await signInWithEmailAndPassword(auth, email, password)
   } catch (error: any) {
-    console.log(error.code, error.message)
+    console.log(error.message)
   }
 }
 
@@ -52,6 +52,6 @@ export const userRegistration = async (
   try {
     return await createUserWithEmailAndPassword(auth, user.email, user.password)
   } catch (error: any) {
-    console.log(error)
+    console.log(error.message)
   }
 }

@@ -16,12 +16,10 @@ export const AuthPage: FC = () => {
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors }
+    formState: { errors, isSubmitting }
   } = useForm<Inputs>()
   const [isSignUp, setSignUp] = React.useState<boolean>(true)
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data)
     userRegistration(data)
   }
 
@@ -49,7 +47,9 @@ export const AuthPage: FC = () => {
           {errors.lastName && <span>LastName field is required</span>}
           {errors.email && <span>Email field is required</span>}
           {errors.password && <span>Password field is required</span>}
-          <button type='submit'>Sign up</button>
+          <button type='submit' disabled={isSubmitting}>
+            Sign up
+          </button>
         </form>
       )}
     </>
