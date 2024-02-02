@@ -27,31 +27,31 @@ export const auth = getAuth(app)
 export const db = getFirestore(app)
 
 // Hook for logIn
-export const loginWithEmailAndPassword = async (
+export const userLogIn = async (
   email: string,
   password: string
 ): Promise<UserCredential | any> => {
   try {
     return await signInWithEmailAndPassword(auth, email, password)
   } catch (error: any) {
-    console.log(error.code, error.message)
+    console.log(error.message)
   }
 }
 
 // Hook for registration
-export interface IUser {
+export interface IRegistrationUser {
   firstName: string
   lastName: string
   email: string
   city: string
-}
-export const createLoginWithEmailAndPassword = async (
-  user: IUser,
   password: string
+}
+export const userRegistration = async (
+  user: IRegistrationUser
 ): Promise<UserCredential | any> => {
   try {
-    return await createUserWithEmailAndPassword(auth, user.email, password)
+    return await createUserWithEmailAndPassword(auth, user.email, user.password)
   } catch (error: any) {
-    console.log(error)
+    console.log(error.message)
   }
 }
