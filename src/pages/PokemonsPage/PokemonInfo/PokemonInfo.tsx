@@ -1,4 +1,4 @@
-import { useEffect, useRef, type FC } from 'react'
+import { type FC,useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { Button } from '../../../common/buttons/Button/Button'

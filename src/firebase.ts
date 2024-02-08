@@ -7,6 +7,7 @@ import {
   signInWithEmailAndPassword
 } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
+
 import type { UserCredential } from '../node_modules/@firebase/auth/dist/auth-public.d'
 
 // Your web app's Firebase configuration

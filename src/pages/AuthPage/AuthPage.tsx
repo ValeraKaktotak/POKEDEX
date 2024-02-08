@@ -1,7 +1,9 @@
 import React, { type FC } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
+
 import { userRegistration } from '../../firebase'
+
 import styles from './AuthPage.module.css'
 
 interface Inputs {

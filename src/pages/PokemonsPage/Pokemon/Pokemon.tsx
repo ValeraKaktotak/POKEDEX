@@ -1,7 +1,7 @@
-import { useState, type FC } from 'react'
+import { type FC,useState } from 'react'
 
-import { PokemonInfo } from '..'
 import { getPokemonId } from '../../../utils/helpers/getPokemonId'
+import { PokemonInfo } from '..'
 
 import styles from './Pokemon.module.css'
 
