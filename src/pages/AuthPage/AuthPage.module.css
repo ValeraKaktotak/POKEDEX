@@ -2,14 +2,12 @@
   @apply flex flex-col m-auto items-center justify-center gap-3;
   @apply max-w-sm w-full h-full;
 }
-.form input {
-  @apply p-2 rounded-lg text-[#d1cbcb] w-full;
-}
 .form button {
-  @apply relative mt-4 w-full;
+  @apply relative top-0 left-0 mt-4 w-full;
+  @apply transition-all duration-150;
   @apply hover:top-[2px] hover:left-[2px];
 }
 
-.form span {
+.error {
   @apply text-red-600;
 }
