@@ -1,0 +1,11 @@
+.container {
+  @apply w-full;
+}
+.input {
+  @apply p-2 text-[#1a1a1a] w-full bg-inherit border ring-[#646cff];
+  @apply rounded-lg border border-[#1a1a1a];
+  @apply focus:outline-0 focus:ring-1 focus:border-[#646cff];
+}
+.label {
+  @apply text-[#1a1a1a] text-left flex font-bold text-sm mb-1;
+}
