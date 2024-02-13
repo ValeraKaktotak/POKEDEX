@@ -1,14 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { getAnalytics } from 'firebase/analytics'
 import { initializeApp } from 'firebase/app'
-import {
-  createUserWithEmailAndPassword,
-  getAuth,
-  signInWithEmailAndPassword
-} from 'firebase/auth'
+import { getAuth } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
-
-import type { UserCredential } from '../node_modules/@firebase/auth/dist/auth-public.d'
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -26,36 +20,3 @@ export const app = initializeApp(firebaseConfig)
 export const analytics = getAnalytics(app)
 export const auth = getAuth(app)
 export const db = getFirestore(app)
-
-// Hook for logIn
-export interface ILoginUser {
-  email: string
-  password: string
-}
-export const userLogIn = async (
-  user: ILoginUser
-): Promise<UserCredential | any> => {
-  try {
-    return await signInWithEmailAndPassword(auth, user.email, user.password)
-  } catch (error: any) {
-    console.log(error.message)
-  }
-}
-
-// Hook for registration
-export interface IRegistrationUser {
-  firstName: string
-  lastName: string
-  email: string
-  city: string
-  password: string
-}
-export const userRegistration = async (
-  user: IRegistrationUser
-): Promise<UserCredential | any> => {
-  try {
-    return await createUserWithEmailAndPassword(auth, user.email, user.password)
-  } catch (error: any) {
-    console.log(error.message)
-  }
-}
