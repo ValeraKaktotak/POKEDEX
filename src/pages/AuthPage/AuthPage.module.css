@@ -1,6 +1,10 @@
+.container {
+  @apply flex items-center flex-col justify-center gap-8;
+  @apply max-w-sm m-auto h-full;
+}
 .form {
-  @apply flex flex-col m-auto items-center justify-center gap-3;
-  @apply max-w-sm w-full h-full;
+  @apply flex flex-col items-center gap-3;
+  @apply w-full;
 }
 .form button {
   @apply relative top-0 left-0 mt-4 w-full;
