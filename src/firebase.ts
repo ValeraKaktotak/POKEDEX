@@ -28,12 +28,15 @@ export const auth = getAuth(app)
 export const db = getFirestore(app)
 
 // Hook for logIn
-export const userLogIn = async (
-  email: string,
+export interface ILoginUser {
+  email: string
   password: string
+}
+export const userLogIn = async (
+  user: ILoginUser
 ): Promise<UserCredential | any> => {
   try {
-    return await signInWithEmailAndPassword(auth, email, password)
+    return await signInWithEmailAndPassword(auth, user.email, user.password)
   } catch (error: any) {
     console.log(error.message)
   }
