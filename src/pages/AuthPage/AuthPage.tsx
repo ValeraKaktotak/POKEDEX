@@ -16,7 +16,7 @@ export const AuthPage: FC = () => {
             setSignUp(!isSignUp)
           }}
         >
-          {isSignUp ? <span>Sign Up</span> : <span>Sign In</span>}
+          {isSignUp ? 'Sign Up' : 'Sign In'}
         </Button>
       </div>
     </>
