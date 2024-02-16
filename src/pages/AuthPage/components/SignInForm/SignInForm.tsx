@@ -2,26 +2,30 @@ import type { FC } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 import { Input } from '../../../../common/fields/inputs'
-import { userLogIn } from '../../../../firebase'
+
+// import { userLogIn } from '../../../../utils/firebase/requests/userLogIn'
+import { useUserLogIn } from '../../../../utils/firebase/hooks/useUserLogIn'
 import styles from '../../AuthPage.module.css'
 
 interface Inputs {
   email: string
   password: string
 }
-interface ISignUpForm {
+interface ISignInForm {
   isSignUp: boolean
 }
 
-export const SignInForm: FC<ISignUpForm> = ({ isSignUp }) => {
+export const SignInForm: FC<ISignInForm> = ({ isSignUp }) => {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting }
   } = useForm<Inputs>()
 
+  const { isLoading, mutate, data: logInRequestData, error } = useUserLogIn()
+
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    userLogIn(data)
+    mutate(data)
   }
 
   return (
