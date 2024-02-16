@@ -3,9 +3,9 @@ import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 
 import { Input } from '../../../../common/fields/inputs'
-
 // import { userLogIn } from '../../../../utils/firebase/requests/userLogIn'
 import { useUserLogIn } from '../../../../utils/firebase/hooks/useUserLogIn'
+
 import styles from '../../AuthPage.module.css'
 
 interface Inputs {

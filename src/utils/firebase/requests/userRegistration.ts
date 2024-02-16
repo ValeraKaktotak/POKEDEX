@@ -2,6 +2,7 @@ import {
   createUserWithEmailAndPassword,
   type UserCredential
 } from 'firebase/auth'
+
 import { auth } from '..'
 
 // Hook for registration

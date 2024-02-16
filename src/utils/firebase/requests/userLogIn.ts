@@ -1,4 +1,5 @@
 import { signInWithEmailAndPassword, type UserCredential } from 'firebase/auth'
+
 import { auth } from '../index'
 
 // Hook for logIn
