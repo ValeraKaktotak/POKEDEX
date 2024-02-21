@@ -3,7 +3,7 @@
   @apply max-w-sm m-auto h-full;
 }
 .form {
-  @apply flex flex-col items-center gap-3;
+  @apply flex flex-col gap-3;
   @apply w-full;
 }
 .container button {
@@ -12,6 +12,10 @@
   @apply hover:top-[2px] hover:left-[2px] focus:outline-none;
 }
 
-.error {
-  @apply text-red-600;
+.title {
+  @apply font-semibold text-3xl pb-5;
+}
+.cover {
+  @apply bg-pokemon-cover w-full h-full rounded-lg;
+  @apply bg-cover bg-no-repeat bg-center;
 }

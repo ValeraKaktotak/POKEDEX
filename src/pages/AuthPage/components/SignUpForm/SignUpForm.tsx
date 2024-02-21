@@ -14,11 +14,8 @@ interface Inputs {
   city: string
   password: string
 }
-interface ISignUpForm {
-  isSignUp: boolean
-}
 
-export const SignUpForm: FC<ISignUpForm> = ({ isSignUp }) => {
+export const SignUpForm: FC = () => {
   const {
     register,
     handleSubmit,
@@ -31,53 +28,53 @@ export const SignUpForm: FC<ISignUpForm> = ({ isSignUp }) => {
 
   return (
     <>
-      {isSignUp && (
-        // eslint-disable-next-line @typescript-eslint/no-misused-promises
-        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-          <Input
-            {...register('firstName', { required: true })}
-            placeholder='First Name'
-            disabled={isSubmitting}
-          />
-          <Input
-            {...register('lastName', { required: true })}
-            placeholder='Last Name'
-            disabled={isSubmitting}
-          />
-          <Input
-            {...register('email', { required: true })}
-            placeholder='Email'
-            disabled={isSubmitting}
-          />
-          <Input
-            {...register('city', { required: true })}
-            placeholder='City'
-            disabled={isSubmitting}
-          />
-          <Input
-            type='password'
-            {...register('password', { required: true })}
-            placeholder='Password'
-            disabled={isSubmitting}
-          />
-          {/* errors will return when field validation fails  */}
-          {errors.firstName && (
-            <span className={styles.error}>FirstName field is required</span>
-          )}
-          {errors.lastName && (
-            <span className={styles.error}>LastName field is required</span>
-          )}
-          {errors.email && (
-            <span className={styles.error}>Email field is required</span>
-          )}
-          {errors.password && (
-            <span className={styles.error}>Password field is required</span>
-          )}
-          <button type='submit' disabled={isSubmitting}>
-            Sign up
-          </button>
-        </form>
-      )}
+      <div className={styles.cover}></div>
+      <h1 className={styles.login}>Registration</h1>
+      {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+        <Input
+          {...register('firstName', { required: true })}
+          placeholder='First Name'
+          disabled={isSubmitting}
+        />
+        <Input
+          {...register('lastName', { required: true })}
+          placeholder='Last Name'
+          disabled={isSubmitting}
+        />
+        <Input
+          {...register('email', { required: true })}
+          placeholder='Email'
+          disabled={isSubmitting}
+        />
+        <Input
+          {...register('city', { required: true })}
+          placeholder='City'
+          disabled={isSubmitting}
+        />
+        <Input
+          type='password'
+          {...register('password', { required: true })}
+          placeholder='Password'
+          disabled={isSubmitting}
+        />
+        {/* errors will return when field validation fails  */}
+        {errors.firstName && (
+          <span className={styles.error}>FirstName field is required</span>
+        )}
+        {errors.lastName && (
+          <span className={styles.error}>LastName field is required</span>
+        )}
+        {errors.email && (
+          <span className={styles.error}>Email field is required</span>
+        )}
+        {errors.password && (
+          <span className={styles.error}>Password field is required</span>
+        )}
+        <button type='submit' disabled={isSubmitting}>
+          Sign up
+        </button>
+      </form>
     </>
   )
 }

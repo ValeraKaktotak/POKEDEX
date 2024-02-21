@@ -11,8 +11,8 @@ export const AuthPage: FC = () => {
   const [isSignUp, setSignUp] = React.useState<boolean>(true)
   return (
     <>
-      <div className={styles.container}>
-        {isSignUp ? <SignInForm isSignUp /> : <SignUpForm isSignUp />}
+      <section className={styles.container}>
+        {isSignUp ? <SignInForm /> : <SignUpForm />}
         <Button
           onClick={() => {
             setSignUp(!isSignUp)
@@ -20,7 +20,7 @@ export const AuthPage: FC = () => {
         >
           {isSignUp ? 'Sign Up' : 'Sign In'}
         </Button>
-      </div>
+      </section>
     </>
   )
 }

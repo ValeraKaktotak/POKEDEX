@@ -3,9 +3,17 @@
 }
 .input {
   @apply p-2 text-[#1a1a1a] w-full bg-inherit border ring-[#646cff];
-  @apply rounded-lg border border-[#1a1a1a];
+  @apply rounded-lg border border-[#1a1a1a] mb-3;
   @apply focus:outline-0 focus:ring-1 focus:border-[#646cff];
+}
+.input.error {
+  @apply bg-red-100 ring-red-100;
+  @apply border-red-100;
+  @apply focus:border-red-100;
 }
 .label {
   @apply text-[#1a1a1a] text-left flex font-bold text-sm mb-1;
+}
+.error {
+  @apply text-red-600;
 }
