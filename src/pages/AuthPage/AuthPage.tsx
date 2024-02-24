@@ -14,11 +14,12 @@ export const AuthPage: FC = () => {
       <section className={styles.container}>
         {isSignUp ? <SignInForm /> : <SignUpForm />}
         <Button
+          variant='text'
           onClick={() => {
             setSignUp(!isSignUp)
           }}
         >
-          {isSignUp ? 'Sign Up' : 'Sign In'}
+          {isSignUp ? 'create new account' : 'have an account'}
         </Button>
       </section>
     </>

@@ -10,8 +10,6 @@ interface IInput extends React.ComponentPropsWithRef<'input'> {
 
 export const Input = React.forwardRef<HTMLInputElement, IInput>(
   ({ placeholder, error, ...props }, inputRef) => {
-    console.log(error)
-
     return (
       <label className={styles.container} htmlFor={placeholder}>
         <span className={styles.label}>{placeholder}</span>
