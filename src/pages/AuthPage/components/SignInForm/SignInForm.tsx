@@ -2,28 +2,29 @@ import type { FC } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 
+import { Button } from '../../../../common/buttons/Button/Button'
 import { Input } from '../../../../common/fields/inputs'
+import { useUserLogInMutation } from '../../../../utils/firebase/hooks/useUserLogInMutation'
 
-// import { userLogIn } from '../../../../utils/firebase/requests/userLogIn'
-import { useUserLogIn } from '../../../../utils/firebase/hooks/useUserLogIn'
+import { email } from '../../../../utils/constants/validation/emailSchema'
+import { password } from '../../../../utils/constants/validation/passwordSchema.ts'
 import styles from '../../AuthPage.module.css'
 
 interface Inputs {
   email: string
   password: string
 }
-interface ISignInForm {
-  isSignUp: boolean
-}
 
-export const SignInForm: FC<ISignInForm> = ({ isSignUp }) => {
+export const SignInForm: FC = () => {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting }
-  } = useForm<Inputs>()
+  } = useForm<Inputs>({ reValidateMode: 'onSubmit' })
 
-  const { isLoading, mutate, data: logInRequestData, error } = useUserLogIn()
+  const { mutate, isLoading } = useUserLogInMutation()
+
+  const loading = isSubmitting || isLoading
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     mutate(data)
@@ -31,32 +32,27 @@ export const SignInForm: FC<ISignInForm> = ({ isSignUp }) => {
 
   return (
     <>
-      {isSignUp && (
-        // eslint-disable-next-line @typescript-eslint/no-misused-promises
-        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-          <Input
-            {...register('email', { required: true })}
-            placeholder='Email'
-            disabled={isSubmitting}
-          />
-          <Input
-            type='password'
-            {...register('password', { required: true })}
-            placeholder='Password'
-            disabled={isSubmitting}
-          />
-          {/* errors will return when field validation fails  */}
-          {errors.email && (
-            <span className={styles.error}>Email field is required</span>
-          )}
-          {errors.password && (
-            <span className={styles.error}>Password field is required</span>
-          )}
-          <button type='submit' disabled={isSubmitting}>
-            Sign in
-          </button>
-        </form>
-      )}
+      <div className={styles.cover}></div>
+      <h1 className={styles.login}>Login</h1>
+      {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+        <Input
+          {...register('email', email)}
+          placeholder='Email'
+          disabled={loading}
+          error={errors.email?.message}
+        />
+        <Input
+          type='password'
+          {...register('password', password)}
+          placeholder='Password'
+          disabled={loading}
+          error={errors.password?.message}
+        />
+        <Button type='submit' loading={loading}>
+          Sign in
+        </Button>
+      </form>
     </>
   )
 }
