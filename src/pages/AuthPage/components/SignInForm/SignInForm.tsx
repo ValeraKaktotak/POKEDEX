@@ -2,10 +2,12 @@ import type { FC } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 
-import { Input } from '../../../../common/fields/inputs'
-import { useUserLogIn } from '../../../../utils/firebase/hooks/useUserLogIn'
-
 import { Button } from '../../../../common/buttons/Button/Button'
+import { Input } from '../../../../common/fields/inputs'
+import { useUserLogInMutation } from '../../../../utils/firebase/hooks/useUserLogInMutation'
+
+import { email } from '../../../../utils/constants/validation/emailSchema'
+import { password } from '../../../../utils/constants/validation/passwordSchema.ts'
 import styles from '../../AuthPage.module.css'
 
 interface Inputs {
@@ -20,7 +22,9 @@ export const SignInForm: FC = () => {
     formState: { errors, isSubmitting }
   } = useForm<Inputs>({ reValidateMode: 'onSubmit' })
 
-  const { isLoading, mutate, data: logInRequestData, error } = useUserLogIn()
+  const { mutate, isLoading } = useUserLogInMutation()
+
+  const loading = isSubmitting || isLoading
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     mutate(data)
@@ -33,36 +37,19 @@ export const SignInForm: FC = () => {
       {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <Input
-          {...register('email', {
-            required: { value: true, message: 'Email field is required' },
-            pattern: {
-              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: 'invalid email address'
-            }
-          })}
+          {...register('email', email)}
           placeholder='Email'
-          disabled={isSubmitting}
+          disabled={loading}
           error={errors.email?.message}
         />
         <Input
           type='password'
-          {...register('password', {
-            required: { value: true, message: 'Password field is required' },
-            minLength: { value: 6, message: 'Password field min length is 6' },
-            maxLength: { value: 16, message: 'Password field max length is 16' }
-          })}
+          {...register('password', password)}
           placeholder='Password'
-          disabled={isSubmitting}
+          disabled={loading}
           error={errors.password?.message}
         />
-        {/* errors will return when field validation fails  */}
-        {/* {errors.email && (
-          <span className={styles.error}>{errors.email.message}</span>
-        )}
-        {errors.password && (
-          <span className={styles.error}>{errors.password.message}</span>
-        )} */}
-        <Button type='submit' disabled={isSubmitting}>
+        <Button type='submit' loading={loading}>
           Sign in
         </Button>
       </form>

@@ -10,5 +10,10 @@ export interface ILoginUser {
 export const userLogIn = async (
   user: ILoginUser
 ): Promise<UserCredential | any> => {
-  return await signInWithEmailAndPassword(auth, user.email, user.password)
+  try {
+    return await signInWithEmailAndPassword(auth, user.email, user.password)
+  } catch (error: any) {
+    const errorMessage = error.message
+    throw errorMessage
+  }
 }

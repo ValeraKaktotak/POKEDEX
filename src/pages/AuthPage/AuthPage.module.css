@@ -1,21 +1,21 @@
 .container {
-  @apply flex items-center flex-col justify-center gap-8;
-  @apply max-w-sm m-auto h-full;
+  @apply flex flex-col items-center justify-center gap-8;
+  @apply m-auto h-full max-w-sm;
 }
 .form {
-  @apply flex flex-col gap-3;
+  @apply flex flex-col gap-2;
   @apply w-full;
 }
 .container button {
-  @apply relative top-0 left-0 mt-4 w-full;
+  @apply relative left-0 top-0 mt-4 w-full;
   @apply transition-all duration-150;
-  @apply hover:top-[2px] hover:left-[2px] focus:outline-none;
+  @apply hover:left-[2px] hover:top-[2px] focus:outline-none;
 }
 
 .title {
-  @apply font-semibold text-3xl pb-5;
+  @apply pb-5 text-3xl font-semibold;
 }
 .cover {
-  @apply bg-pokemon-cover w-full h-full rounded-lg;
-  @apply bg-cover bg-no-repeat bg-center;
+  @apply h-full w-full rounded-lg bg-pokemon-cover;
+  @apply bg-cover bg-center bg-no-repeat;
 }
