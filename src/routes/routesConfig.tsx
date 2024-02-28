@@ -9,16 +9,16 @@ import { IsAuthComponent } from './isAuthComponent/IsAuthComponent'
 
 export const router = createBrowserRouter([
   {
-    path: '/auth',
-    element: <AuthPage />
-  },
-  {
     path: '/',
     element: <Layout />,
     children: [
       {
         path: '',
         element: <PokemonsPage />
+      },
+      {
+        path: '/auth',
+        element: <AuthPage />
       },
       {
         path: '/pokedex',

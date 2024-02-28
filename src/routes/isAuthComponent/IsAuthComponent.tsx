@@ -1,18 +1,13 @@
-import { useState, type FC } from 'react'
+import { useContext, useState, type FC } from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
+import { StoreContext } from '../../utils/context/store'
 
-interface IIsAuthComponent {
-  isAuth?: boolean
-}
-
-export const IsAuthComponent: FC<IIsAuthComponent> = ({
-  isAuth = false,
-  ...props
-}) => {
-  const [auth, setAuth] = useState(isAuth)
+export const IsAuthComponent: FC = () => {
+  const isAuth = useContext(StoreContext)
+  const [auth, setAuth] = useState(isAuth.store.session.isLogin)
 
   if (!auth) {
     return <Navigate to='/Auth' />
   }
-  return <Outlet {...props} />
+  return <Outlet />
 }

@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from 'react-query/devtools'
 import App from './App.tsx'
 
 import './assets/css/global.css'
+import { StoreProvider } from './utils/context/store/index.ts'
 
 const queryClient = new QueryClient()
 
@@ -14,7 +15,9 @@ if (container !== null && container !== undefined) {
   ReactDOM.createRoot(container).render(
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
-      <App />
+      <StoreProvider>
+        <App />
+      </StoreProvider>
     </QueryClientProvider>
   )
 }
