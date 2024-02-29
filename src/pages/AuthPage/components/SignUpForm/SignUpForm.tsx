@@ -1,4 +1,4 @@
-import type { FC } from 'react'
+import { useContext, type FC } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 
@@ -8,6 +8,7 @@ import { useUserRegistrationMutation } from '../../../../utils/firebase/hooks/us
 
 import { email } from '../../../../utils/constants/validation/emailSchema'
 import { password } from '../../../../utils/constants/validation/passwordSchema'
+import { StoreContext } from '../../../../utils/context/store'
 import styles from '../../AuthPage.module.css'
 
 interface Inputs {
@@ -26,10 +27,14 @@ export const SignUpForm: FC = () => {
 
   const { mutate, isLoading, status } = useUserRegistrationMutation()
 
+  const { store, setStore } = useContext(StoreContext)
+  console.log(store)
+
   const loading = isSubmitting || isLoading
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     mutate(data)
+    setStore((store) => ({ ...store, session: { isLogin: true } }))
   }
 
   return (
