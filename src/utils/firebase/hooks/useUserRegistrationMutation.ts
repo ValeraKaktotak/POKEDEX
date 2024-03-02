@@ -1,6 +1,8 @@
 import { type UserCredential } from 'firebase/auth'
 import { useMutation, type UseMutationResult } from 'react-query'
 
+import { AUTH_COOKIE } from '../../constants/cookie'
+import { setCookie } from '../../helpers/cookies/setCookie'
 import {
   userRegistration,
   type IRegistrationUser
@@ -13,7 +15,7 @@ export const useUserRegistrationMutation = (): UseMutationResult<
   unknown
 > => {
   return useMutation<
-    Promise<UserCredential | any>,
+    Promise<UserCredential>,
     unknown,
     IRegistrationUser,
     unknown
@@ -22,6 +24,10 @@ export const useUserRegistrationMutation = (): UseMutationResult<
     mutationFn: async (param: IRegistrationUser) => {
       const result = await userRegistration(param)
       return result
+    },
+    onSuccess: async (data) => {
+      const result = await data
+      setCookie(AUTH_COOKIE, result.user.uid, 10)
     }
   })
 }

@@ -6,11 +6,9 @@ import { Button } from '../../../../common/buttons/Button/Button'
 import { Input } from '../../../../common/fields/inputs'
 import { useUserRegistrationMutation } from '../../../../utils/firebase/hooks/useUserRegistrationMutation'
 
-import { AUTH_COOKIE } from '../../../../utils/constants/cookie'
 import { email } from '../../../../utils/constants/validation/emailSchema'
 import { password } from '../../../../utils/constants/validation/passwordSchema'
 import { StoreContext } from '../../../../utils/context/store'
-import { setCookie } from '../../../../utils/helpers/cookies/setCookie'
 import styles from '../../AuthPage.module.css'
 
 interface Inputs {
@@ -29,14 +27,14 @@ export const SignUpForm: FC = () => {
 
   const { mutate, isLoading, status } = useUserRegistrationMutation()
 
-  const { setStore } = useContext(StoreContext)
+  const { store, setStore } = useContext(StoreContext)
+  console.log(store)
 
   const loading = isSubmitting || isLoading
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     mutate(data)
     setStore((prev) => ({ ...prev, session: { isLogin: true } }))
-    setCookie(AUTH_COOKIE, 'testValue', 10)
   }
 
   return (

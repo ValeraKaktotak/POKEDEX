@@ -1,6 +1,6 @@
 export const setCookie = (
   cookieName: string,
-  cookieValue: string,
+  cookieValue: string | number | boolean | null,
   hourToExpire: number
 ): void => {
   const date = new Date()
