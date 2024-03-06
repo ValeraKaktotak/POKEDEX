@@ -27,8 +27,7 @@ export const SignUpForm: FC = () => {
 
   const { mutate, isLoading, status } = useUserRegistrationMutation()
 
-  const { store, setStore } = useContext(StoreContext)
-  console.log(store)
+  const { setStore } = useContext(StoreContext)
 
   const loading = isSubmitting || isLoading
 
