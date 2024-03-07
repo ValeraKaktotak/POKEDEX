@@ -1,6 +1,11 @@
 import { type UserCredential } from 'firebase/auth'
 import { useMutation, type UseMutationResult } from 'react-query'
 
+import { useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { AUTH_COOKIE } from '../../constants/cookie'
+import { StoreContext } from '../../context/store'
+import { setCookie } from '../../helpers/cookies/setCookie'
 import {
   userRegistration,
   type IRegistrationUser
@@ -12,8 +17,10 @@ export const useUserRegistrationMutation = (): UseMutationResult<
   IRegistrationUser,
   unknown
 > => {
+  const navigation = useNavigate()
+  const { setStore } = useContext(StoreContext)
   return useMutation<
-    Promise<UserCredential | any>,
+    Promise<UserCredential>,
     unknown,
     IRegistrationUser,
     unknown
@@ -22,6 +29,12 @@ export const useUserRegistrationMutation = (): UseMutationResult<
     mutationFn: async (param: IRegistrationUser) => {
       const result = await userRegistration(param)
       return result
+    },
+    onSuccess: async (data) => {
+      const result = await data
+      setCookie(AUTH_COOKIE, result.user.uid, 10)
+      setStore((prev) => ({ ...prev, session: { isLogin: true } }))
+      navigation('/pokedex')
     }
   })
 }

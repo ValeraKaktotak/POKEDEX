@@ -16,6 +16,6 @@
   @apply pb-5 text-3xl font-semibold;
 }
 .cover {
-  @apply h-full w-full rounded-lg bg-pokemon-cover;
+  @apply h-[200px] w-full rounded-lg bg-pokemon-cover;
   @apply bg-cover bg-center bg-no-repeat;
 }

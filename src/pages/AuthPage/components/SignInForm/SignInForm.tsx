@@ -1,13 +1,14 @@
-import type { FC } from 'react'
+import { type FC } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
 
 import { Button } from '../../../../common/buttons/Button/Button'
 import { Input } from '../../../../common/fields/inputs'
-import { useUserLogInMutation } from '../../../../utils/firebase/hooks/useUserLogInMutation'
-
 import { email } from '../../../../utils/constants/validation/emailSchema'
 import { password } from '../../../../utils/constants/validation/passwordSchema.ts'
+import { useUserLogInMutation } from '../../../../utils/firebase/hooks/useUserLogInMutation'
+import { useUserLogInWithGoogleMutation } from '../../../../utils/firebase/hooks/useUserLogInWithGoogleMutation.ts'
+
 import styles from '../../AuthPage.module.css'
 
 interface Inputs {
@@ -23,8 +24,10 @@ export const SignInForm: FC = () => {
   } = useForm<Inputs>({ reValidateMode: 'onSubmit' })
 
   const { mutate, isLoading } = useUserLogInMutation()
+  const { mutate: loginWithGoogle, isLoading: googleIsLoading } =
+    useUserLogInWithGoogleMutation()
 
-  const loading = isSubmitting || isLoading
+  const loading = isSubmitting || isLoading || googleIsLoading
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     mutate(data)
@@ -53,6 +56,14 @@ export const SignInForm: FC = () => {
           Sign in
         </Button>
       </form>
+      <Button
+        onClick={() => {
+          loginWithGoogle({})
+        }}
+        loading={loading}
+      >
+        Sign in with Google
+      </Button>
     </>
   )
 }

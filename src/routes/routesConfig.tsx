@@ -5,12 +5,9 @@ import { AuthPage } from '../pages/AuthPage'
 import { PokedexPage } from '../pages/PokedexPage'
 import { PokemonPage } from '../pages/PokemonPage'
 import { PokemonsPage } from '../pages/PokemonsPage'
+import { IsAuthComponent } from './isAuthComponent/IsAuthComponent'
 
 export const router = createBrowserRouter([
-  {
-    path: '/auth',
-    element: <AuthPage />
-  },
   {
     path: '/',
     element: <Layout />,
@@ -20,8 +17,18 @@ export const router = createBrowserRouter([
         element: <PokemonsPage />
       },
       {
+        path: '/auth',
+        element: <AuthPage />
+      },
+      {
         path: '/pokedex',
-        element: <PokedexPage />
+        element: <IsAuthComponent />,
+        children: [
+          {
+            path: '',
+            element: <PokedexPage />
+          }
+        ]
       },
       {
         path: '/pokemon/:pokemonId',
