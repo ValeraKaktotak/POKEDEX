@@ -28,7 +28,11 @@ export const useUserLogInWithGoogleMutation = (): UseMutationResult<
       },
       onSuccess(data) {
         setCookie(AUTH_COOKIE, data.user.uid, 10)
-        setStore((prev) => ({ ...prev, session: { isLogin: true } }))
+        setStore((prev) => ({
+          ...prev,
+          session: { isLogin: true },
+          userProfile: data.user
+        }))
         navigation('/pokedex')
       }
     }

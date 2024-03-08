@@ -12,7 +12,8 @@ export const StoreProvider: FC<IStoreProvider> = ({ children }) => {
   const [store, setStore] = useState<IStoreContext['store']>({
     session: {
       isLogin: !!getCookie(AUTH_COOKIE)
-    }
+    },
+    userProfile: null
   })
 
   const value = useMemo(() => {

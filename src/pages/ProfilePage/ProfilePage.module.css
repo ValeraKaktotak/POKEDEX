@@ -1,0 +1,4 @@
+.profilePage {
+  @apply flex flex-col items-center gap-5;
+  @apply m-auto w-full max-w-2xl;
+}

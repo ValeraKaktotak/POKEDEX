@@ -16,6 +16,7 @@ export const Header: FC = () => {
       <div className={styles.header_menu}>
         <Link to='/'>Pokemons Page</Link>
         <Link to='/pokedex'>Pokedex Page</Link>
+        <Link to='/profile'>Profile Page</Link>
         <Link to='/auth'>Log in</Link>
       </div>
     </div>
