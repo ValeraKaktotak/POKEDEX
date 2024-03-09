@@ -25,7 +25,6 @@ export const useUserLogInMutation = (): UseMutationResult<
     ['userLogIn'],
     async (param: ILoginUser) => {
       const result = await userLogIn(param)
-
       return result
     },
     {
