@@ -1,7 +1,6 @@
-import { useMemo, useState, type FC, type ReactNode } from 'react'
+import { useEffect, useMemo, useState, type FC, type ReactNode } from 'react'
 import { StoreContext } from '.'
-import { AUTH_COOKIE } from '../../constants/cookie'
-import { getCookie } from '../../helpers/cookies/getCookie'
+import { useAuthState } from '../../firebase/hooks/useAuthState'
 import { type IStoreContext } from './StoreContext'
 
 interface IStoreProvider {
@@ -9,12 +8,26 @@ interface IStoreProvider {
 }
 
 export const StoreProvider: FC<IStoreProvider> = ({ children }) => {
+  const { userData } = useAuthState()
+
   const [store, setStore] = useState<IStoreContext['store']>({
     session: {
-      isLogin: !!getCookie(AUTH_COOKIE)
+      isLogin: !!userData
     },
-    userProfile: null
+    userProfile: userData
   })
+
+  useEffect(() => {
+    if (userData) {
+      setStore({
+        ...store,
+        session: {
+          isLogin: !!userData
+        },
+        userProfile: userData
+      })
+    }
+  }, [userData])
 
   const value = useMemo(() => {
     return { store, setStore }
