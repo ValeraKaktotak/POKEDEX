@@ -17,8 +17,6 @@ export const StoreProvider: FC<IStoreProvider> = ({ children }) => {
     userProfile: userData
   })
 
-  console.log(store.userProfile)
-
   useEffect(() => {
     if (userData) {
       setStore({

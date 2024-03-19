@@ -9,6 +9,7 @@ import { PokemonStats } from './PokemonStats/PokemonStats'
 import { PokemonTypes } from './PokemonTypes/PokemonTypes'
 
 import { StoreContext } from '../../../utils/context/store'
+import { useAddDocumentsMutation } from '../../../utils/firebase/hooks/useAddDocumentsMutation'
 import styles from './PokemonInfo.module.css'
 
 interface IPokemonInfo {
@@ -20,6 +21,7 @@ export const PokemonInfo: FC<IPokemonInfo> = ({ id, onClose }) => {
   const { data: pokemon, isLoading } = useRequestPokemonQuery(id)
   const { store } = useContext(StoreContext)
   const navigate = useNavigate()
+  const AddDocumentsMutation = useAddDocumentsMutation()
   const blockRef = useRef<HTMLDivElement>(null)
   const closeHandleClickOutside = (event: MouseEvent): void => {
     if (blockRef.current && !blockRef.current.contains(event.target as Node)) {
@@ -81,7 +83,18 @@ export const PokemonInfo: FC<IPokemonInfo> = ({ id, onClose }) => {
       >
         Go to evolutions
       </Button>
-      {store.session.isLogin && <Button>Add to team</Button>}
+      {store.session.isLogin && (
+        <Button
+          onClick={() => {
+            AddDocumentsMutation.mutate({
+              collectionName: 'pokemons',
+              data: { ...pokemon, uid: store.userProfile?.uid }
+            })
+          }}
+        >
+          Add to team
+        </Button>
+      )}
     </div>
   )
 }
