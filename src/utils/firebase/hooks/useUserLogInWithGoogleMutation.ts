@@ -33,7 +33,7 @@ export const useUserLogInWithGoogleMutation = (): UseMutationResult<
           session: { isLogin: true },
           userProfile: data.user
         }))
-        navigation('/pokedex')
+        navigation('/')
       }
     }
   )

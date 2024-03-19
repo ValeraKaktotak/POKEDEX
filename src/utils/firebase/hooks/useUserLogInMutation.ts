@@ -35,7 +35,7 @@ export const useUserLogInMutation = (): UseMutationResult<
         const result = await data
         setCookie(AUTH_COOKIE, result.user.uid, 10)
         setStore((prev) => ({ ...prev, session: { isLogin: true } }))
-        navigation('/pokedex')
+        navigation('/')
       }
     }
   )
