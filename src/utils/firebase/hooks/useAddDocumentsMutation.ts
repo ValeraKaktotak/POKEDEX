@@ -8,7 +8,11 @@ import { addDocument } from '../requests/addDocument'
 
 interface IAddDocumentPokemonsMutation {
   collectionName: Extract<Collection, 'pokemons'>
-  data: IPokemon & { uid: User['uid'] | undefined }
+  data: {
+    pokemonID: IPokemon['id']
+    pokemonName: IPokemon['name']
+    uid: User['uid'] | undefined
+  }
 }
 
 type IAddDocumentsMutation = IAddDocumentPokemonsMutation

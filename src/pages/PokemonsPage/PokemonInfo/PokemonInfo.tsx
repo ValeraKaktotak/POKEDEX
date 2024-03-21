@@ -88,7 +88,11 @@ export const PokemonInfo: FC<IPokemonInfo> = ({ id, onClose }) => {
           onClick={() => {
             AddDocumentsMutation.mutate({
               collectionName: 'pokemons',
-              data: { ...pokemon, uid: store.userProfile?.uid }
+              data: {
+                pokemonID: pokemon.id,
+                pokemonName: pokemon.name,
+                uid: store.userProfile?.uid
+              }
             })
           }}
         >
