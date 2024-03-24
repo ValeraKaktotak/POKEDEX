@@ -13,6 +13,7 @@ interface IAddDocumentPokemonsMutation {
     pokemonName: IPokemon['name']
     uid: User['uid'] | undefined
   }
+  close: () => void
 }
 
 type IAddDocumentsMutation = IAddDocumentPokemonsMutation
@@ -25,6 +26,7 @@ export const useAddDocumentsMutation = (): UseMutationResult<
 > => {
   return useMutation(['addDocument'], async (params: IAddDocumentsMutation) => {
     const result = await addDocument(params.collectionName, params.data)
+    params.close()
     return result
   })
 }

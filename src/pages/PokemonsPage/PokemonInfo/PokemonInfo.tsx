@@ -85,14 +85,17 @@ export const PokemonInfo: FC<IPokemonInfo> = ({ id, onClose }) => {
       </Button>
       {store.session.isLogin && (
         <Button
-          onClick={() => {
+          loading={AddDocumentsMutation.isLoading}
+          onClick={(event) => {
+            event.stopPropagation()
             AddDocumentsMutation.mutate({
               collectionName: 'pokemons',
               data: {
                 pokemonID: pokemon.id,
                 pokemonName: pokemon.name,
                 uid: store.userProfile?.uid
-              }
+              },
+              close: onClose
             })
           }}
         >
