@@ -1,4 +1,4 @@
-import { type FC,useEffect, useRef } from 'react'
+import { useContext, useEffect, useRef, type FC } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { Button } from '../../../common/buttons/Button/Button'
@@ -8,6 +8,8 @@ import { getPokemonId } from '../../../utils/helpers/getPokemonId'
 import { PokemonStats } from './PokemonStats/PokemonStats'
 import { PokemonTypes } from './PokemonTypes/PokemonTypes'
 
+import { StoreContext } from '../../../utils/context/store'
+import { useAddDocumentsMutation } from '../../../utils/firebase/hooks/useAddDocumentsMutation'
 import styles from './PokemonInfo.module.css'
 
 interface IPokemonInfo {
@@ -17,7 +19,9 @@ interface IPokemonInfo {
 
 export const PokemonInfo: FC<IPokemonInfo> = ({ id, onClose }) => {
   const { data: pokemon, isLoading } = useRequestPokemonQuery(id)
+  const { store } = useContext(StoreContext)
   const navigate = useNavigate()
+  const AddDocumentsMutation = useAddDocumentsMutation()
   const blockRef = useRef<HTMLDivElement>(null)
   const closeHandleClickOutside = (event: MouseEvent): void => {
     if (blockRef.current && !blockRef.current.contains(event.target as Node)) {
@@ -42,7 +46,7 @@ export const PokemonInfo: FC<IPokemonInfo> = ({ id, onClose }) => {
 
   return (
     <div ref={blockRef} className={styles.pokemon_info_container}>
-      <div className='text-right mb-2'>
+      <div className='mb-2 text-right'>
         <strong
           tabIndex={0}
           role='button'
@@ -56,7 +60,7 @@ export const PokemonInfo: FC<IPokemonInfo> = ({ id, onClose }) => {
             event.stopPropagation()
             onClose()
           }}
-          className='text-xl align-center cursor-pointer alert-del'
+          className='align-center alert-del cursor-pointer text-xl'
         >
           &times;
         </strong>
@@ -77,8 +81,27 @@ export const PokemonInfo: FC<IPokemonInfo> = ({ id, onClose }) => {
           navigate(`/pokemon/${pokemon.id}`)
         }}
       >
-        ENTER
+        Go to evolutions
       </Button>
+      {store.session.isLogin && (
+        <Button
+          loading={AddDocumentsMutation.isLoading}
+          onClick={(event) => {
+            event.stopPropagation()
+            AddDocumentsMutation.mutate({
+              collectionName: 'pokemons',
+              data: {
+                pokemonID: pokemon.id,
+                pokemonName: pokemon.name,
+                uid: store.userProfile?.uid
+              },
+              close: onClose
+            })
+          }}
+        >
+          Add to team
+        </Button>
+      )}
     </div>
   )
 }
