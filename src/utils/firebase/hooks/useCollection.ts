@@ -10,7 +10,7 @@ export const useCollection = <T>(query: Query<T>): any => {
       querySnapshot.forEach((doc) => {
         pokemons.push(doc.data())
       })
-      console.log('Current data: ', pokemons)
+      // console.log('Current data: ', pokemons)
       setData(data)
     })
     return () => {
