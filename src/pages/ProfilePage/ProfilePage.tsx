@@ -1,12 +1,14 @@
 import { type User } from 'firebase/auth'
 import { collection, query, where } from 'firebase/firestore'
-import { useContext, type FC } from 'react'
+import { type FC,useContext } from 'react'
+
 import { Button } from '../../common/buttons/Button/Button'
 import { type IPokemon } from '../../utils/api/requests/pokemon/id/types'
 import { StoreContext } from '../../utils/context/store'
 import { db } from '../../utils/firebase'
 import { useCollection } from '../../utils/firebase/hooks/useCollection'
 import { useUserLogOutMutation } from '../../utils/firebase/hooks/useUserLogOutMutation'
+
 import styles from './ProfilePage.module.css'
 
 export interface ITeamMember {

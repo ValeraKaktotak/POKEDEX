@@ -1,7 +1,7 @@
-import { useMutation, type UseMutationResult } from 'react-query'
-
 import { useContext } from 'react'
+import { useMutation, type UseMutationResult } from 'react-query'
 import { useNavigate } from 'react-router-dom'
+
 import { StoreContext } from '../../context/store'
 import { userLogOut } from '../requests/userLogOut'
 

@@ -1,10 +1,10 @@
-import { useMutation, type UseMutationResult } from 'react-query'
-
 import { type User } from 'firebase/auth'
 import { type DocumentData, type DocumentReference } from 'firebase/firestore'
-import { type Collection } from '..'
+import { useMutation, type UseMutationResult } from 'react-query'
+
 import { type IPokemon } from '../../api/requests/pokemon/id/types'
 import { addDocument } from '../requests/addDocument'
+import { type Collection } from '..'
 
 interface IAddDocumentPokemonsMutation {
   collectionName: Extract<Collection, 'pokemons'>

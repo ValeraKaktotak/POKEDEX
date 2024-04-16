@@ -1,5 +1,6 @@
-import { useContext, type FC } from 'react'
+import { type FC,useContext } from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
+
 import { StoreContext } from '../../utils/context/store'
 
 export const IsAuthComponent: FC = () => {

@@ -1,4 +1,5 @@
 import { signOut } from 'firebase/auth'
+
 import { auth } from '..'
 
 export const userLogOut = async (): Promise<void> => {

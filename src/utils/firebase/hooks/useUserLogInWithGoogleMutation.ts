@@ -1,8 +1,8 @@
-import { useMutation, type UseMutationResult } from 'react-query'
-
 import { type UserCredential } from 'firebase/auth'
 import { useContext } from 'react'
+import { useMutation, type UseMutationResult } from 'react-query'
 import { useNavigate } from 'react-router-dom'
+
 import { AUTH_COOKIE } from '../../constants/cookie'
 import { StoreContext } from '../../context/store'
 import { setCookie } from '../../helpers/cookies/setCookie'

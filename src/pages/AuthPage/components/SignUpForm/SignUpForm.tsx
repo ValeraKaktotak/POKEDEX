@@ -4,10 +4,10 @@ import { useForm } from 'react-hook-form'
 
 import { Button } from '../../../../common/buttons/Button/Button'
 import { Input } from '../../../../common/fields/inputs'
-import { useUserRegistrationMutation } from '../../../../utils/firebase/hooks/useUserRegistrationMutation'
-
 import { email } from '../../../../utils/constants/validation/emailSchema'
 import { password } from '../../../../utils/constants/validation/passwordSchema'
+import { useUserRegistrationMutation } from '../../../../utils/firebase/hooks/useUserRegistrationMutation'
+
 import styles from '../../AuthPage.module.css'
 
 interface Inputs {
