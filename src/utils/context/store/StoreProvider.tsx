@@ -1,7 +1,9 @@
-import { useEffect, useMemo, useState, type FC, type ReactNode } from 'react'
-import { StoreContext } from '.'
+import { type FC, type ReactNode,useEffect, useMemo, useState } from 'react'
+
 import { useAuthState } from '../../firebase/hooks/useAuthState'
+
 import { type IStoreContext } from './StoreContext'
+import { StoreContext } from '.'
 
 interface IStoreProvider {
   children: ReactNode

@@ -1,15 +1,14 @@
 import { type UserCredential } from 'firebase/auth'
-import { useMutation, type UseMutationResult } from 'react-query'
-
 import { useContext } from 'react'
+import { useMutation, type UseMutationResult } from 'react-query'
 import { useNavigate } from 'react-router-dom'
+
 import { AUTH_COOKIE } from '../../constants/cookie'
 import { StoreContext } from '../../context/store'
 import { setCookie } from '../../helpers/cookies/setCookie'
 import {
-  userRegistration,
-  type IRegistrationUser
-} from '../requests/userRegistration'
+  type IRegistrationUser,
+  userRegistration} from '../requests/userRegistration'
 
 export const useUserRegistrationMutation = (): UseMutationResult<
   Promise<UserCredential | any>,

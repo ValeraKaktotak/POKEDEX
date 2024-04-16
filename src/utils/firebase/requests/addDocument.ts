@@ -5,6 +5,7 @@ import {
   type DocumentReference,
   type WithFieldValue
 } from 'firebase/firestore'
+
 import { db } from '..'
 
 // Add a new document with a generated id.

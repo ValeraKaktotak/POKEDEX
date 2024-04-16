@@ -2,10 +2,10 @@ import ReactDOM from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 
+import { StoreProvider } from './utils/context/store/index.ts'
 import App from './App.tsx'
 
 import './assets/css/global.css'
-import { StoreProvider } from './utils/context/store/index.ts'
 
 const queryClient = new QueryClient()
 

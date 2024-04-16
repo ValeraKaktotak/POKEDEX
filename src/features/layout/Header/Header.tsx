@@ -1,9 +1,9 @@
-import { useContext, type FC } from 'react'
+import { type FC,useContext } from 'react'
 import { Link } from 'react-router-dom'
 
 import logo from '../../../assets/pokemon_logo.png'
-
 import { StoreContext } from '../../../utils/context/store'
+
 import styles from './Header.module.css'
 
 export const Header: FC = () => {

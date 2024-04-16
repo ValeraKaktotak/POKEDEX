@@ -1,15 +1,15 @@
-import { useContext, useEffect, useRef, type FC } from 'react'
+import { type FC,useContext, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { Button } from '../../../common/buttons/Button/Button'
 import { useRequestPokemonQuery } from '../../../utils/api/hooks/pokemon'
+import { StoreContext } from '../../../utils/context/store'
+import { useAddDocumentsMutation } from '../../../utils/firebase/hooks/useAddDocumentsMutation'
 import { getPokemonId } from '../../../utils/helpers/getPokemonId'
 
 import { PokemonStats } from './PokemonStats/PokemonStats'
 import { PokemonTypes } from './PokemonTypes/PokemonTypes'
 
-import { StoreContext } from '../../../utils/context/store'
-import { useAddDocumentsMutation } from '../../../utils/firebase/hooks/useAddDocumentsMutation'
 import styles from './PokemonInfo.module.css'
 
 interface IPokemonInfo {
